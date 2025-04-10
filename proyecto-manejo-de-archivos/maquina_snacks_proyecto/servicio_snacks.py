@@ -13,6 +13,9 @@ class ServicioSnacks:
         else:
             self.cargar_snack_iniciales()
 
+    def cargar_snacks_iniciales(self):
+        snacks_iniciales = [] 
+
     # def cargar_snacks_inicia:
     def obtener_snacks(self):
         pass
