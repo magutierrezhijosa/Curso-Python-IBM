@@ -1,5 +1,5 @@
 class Snack:
-    contador_snack = 0
+    contador_snacks = 0
 
     #Agregamos el metodo constructor 
     def __init__(self, nombre="" , precio=0.0):

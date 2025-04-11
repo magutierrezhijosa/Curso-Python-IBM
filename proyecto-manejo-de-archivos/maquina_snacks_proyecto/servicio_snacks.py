@@ -13,7 +13,7 @@ class ServicioSnacks:
             self.snacks = self.obtener_snacks()
         # Sino, cargamos algunos snacks iniciales
         else:
-            self.cargar_snack_iniciales()
+            self.cargar_snacks_iniciales()
 
     def cargar_snacks_iniciales(self):
         snacks_iniciales = [
