@@ -3,6 +3,7 @@ from snack import Snack
 
 class MaquinaSnacks:
 
+    # Constructor para crear la clase
     def __init__(self):
         self.servicio_snacks = ServicioSnacks()
         self.productos = []
