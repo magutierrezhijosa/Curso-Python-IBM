@@ -9,4 +9,10 @@ class Contacto:
         self.correo = correo
 
     def __str__(self):
-        pass
+        return(f"""Contacto ==> nombre: {self.nombre}, 
+                                numero de telefono: {self.numero_telefono},
+                                correo: {self.correo}
+                """)
+    
+    def escribir_contacto(self):
+        return f"{self.nombre},{self.numero_telefono},{self.correo}"
