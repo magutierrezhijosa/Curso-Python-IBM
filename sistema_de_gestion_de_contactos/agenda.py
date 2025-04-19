@@ -33,6 +33,9 @@ class Agenda:
             return int(opcion)
         else:
             print("Por favor, introduce un numero valido.")
-            
+
+
+
+    # Programa principal         
     if __name__ == "__main__":
-        pass
+        agenda = Agenda()
