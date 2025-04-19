@@ -63,4 +63,17 @@ class GestionContactos:
         for pelicula in self.peliculas:
             print(pelicula)
 
-    
+    # Metodo que guarda los conctos en el archivo .txt
+    def guardar_contacto_archivo(self,contactos):
+
+        try:
+            # Vamos a abrir el archivo en modo escritura para 
+            # agregar el nuevo contacto
+            with open(self.NOMBRE_ARCHIVO, "a" , encoding="utf8") as archivo:
+                # Recorremos contactos 
+                for contacto in contactos:
+                    # Agregamos el nuevo contacto a nuestro archivo .txt
+                    archivo.write(f"{contacto.escribir_contacto()}\n")
+
+        except Exception as e:
+            print(f"No se pudo guardar el contacto en el archivo:{e}")
