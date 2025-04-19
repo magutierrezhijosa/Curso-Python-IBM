@@ -77,3 +77,11 @@ class GestionContactos:
 
         except Exception as e:
             print(f"No se pudo guardar el contacto en el archivo:{e}")
+
+    # Metodo para agregar el contacto a la lista y posteriormente al .txt
+    def agregar_contacto(self,contacto):
+
+        # Primero agrego el contacto a la lista
+        self.contactos.append(contacto)
+        # Guardamos el contacto en el .txt 
+        self.guardar_contacto_archivo([contacto])
