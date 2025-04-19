@@ -59,7 +59,7 @@ class Agenda:
             self.gestion_contactos.listar_contactos()
         # Opcion 3 : Buscar un contacto
         elif opcion == 3:
-            pass
+            self.buscar()
         # Opcion 4 : Eliminar un contacto
         elif opcion == 4:
             pass
@@ -79,15 +79,21 @@ class Agenda:
     # Metodo para agregar nuevos contactos a la agenda 
     def agregar_contacto(self):
         # Pido que me introduzca la informacion del contacto y la guardo
-        nombre = input("Introduce el nombre del contacto")
-        numero_telefono = input("Inroduce el telefono")
-        correo = input("Introduce el correo")
+        nombre = input("Introduce el nombre del contacto: ")
+        numero_telefono = input("Inroduce el telefono: ")
+        correo = input("Introduce el correo: ")
 
         # Creamos un objeto tipo Contacto con los valores que introdujo el User
         nuevo_contacto = Contacto(nombre,numero_telefono,correo)
 
         # FALTA LLAMAR AL METODO PARA AGREGAR EL CONTACTO AL .TXT
         self.gestion_contactos.agregar_contacto(nuevo_contacto)
+
+    def buscar(self):
+        # Pido un nombre de contacto para buscarlo en la agenda
+        nombre_para_buscar = input("Introduce el nombre del contacto que quieres buscar: ")
+
+        self.gestion_contactos.buscar_contacto(nombre_para_buscar)
 
 # Programa principal         
 if __name__ == "__main__":

@@ -85,3 +85,28 @@ class GestionContactos:
         self.contactos.append(contacto)
         # Guardamos el contacto en el .txt 
         self.guardar_contacto_archivo([contacto])
+
+    def buscar_contacto(self,name):
+
+        try:
+            # Abrimos el archivo con permisos de lectura para buscar el contacto
+            with open(self.NOMBRE_ARCHIVO, "r", encoding="utf8") as archivo:
+
+                # Declaro un contador par acomprobar si esta el nombre
+                find = False
+                # Recorremos linea a linea para buscar el nombre que nos dio el User
+                for linea in archivo:
+                     # Recojo los valores en cada variable
+                    nombre, numero_telefono, correo = linea.strip().split(",")
+                    # Si el nombre es igual al name que nos dio el User
+                    if nombre == name:
+                        # Le muestro el contacto 
+                        print(f"El contacto con el nombre: {name} con numero: {numero_telefono} y correo: {correo}")
+                        find = True
+                # Si no encuentra ningun contacto con ese nombre le pasamos un mensaje de info
+                if find == False:
+                    print(f"No se encontro ningun contacto con el nombre: {name}")
+
+
+        except Exception as e:
+            print(f"ERROR: {e}")
