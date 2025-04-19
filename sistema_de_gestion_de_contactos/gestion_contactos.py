@@ -50,3 +50,15 @@ class GestionContactos:
         # Devolvemos los contactos
         return contactos
     
+    # Metodo para listar los contactos 
+    def listar_contactos(self):
+
+        # Agregamos una validacion para que no intente imprimir si la lista 
+        # esta vacia
+        if not self.contactos:
+            print("No se pued listar por que no hay contactos")
+            return
+        
+        print("--- Contactos en la agenda ---")
+        for pelicula in self.peliculas:
+            print(pelicula)
