@@ -23,6 +23,7 @@ class Agenda:
                 opcion = self.menu_agenda()
 
                 # Falta ejecutar la opcion que nos envie el user
+                salir = self.ejecutar_opcion(opcion)
 
             except Exception as e:
                 print(f"Ocurrio un erro: {e}")
@@ -71,7 +72,17 @@ class Agenda:
         input("\nPresiona Enter para continuar ....1")
         return False
 
-        
+    # Metodo para agregar nuevos contactos a la agenda 
+    def agregar_contacto(self):
+        # Pido que me introduzca la informacion del contacto y la guardo
+        nombre = input("Introduce el nombre del contacto")
+        numero_telefono = input("Inroduce el telefono")
+        correo = input("Introduce el correo")
+
+        # Creamos un objeto tipo Contacto con los valores que introdujo el User
+        nuevo_contacto = Contacto(nombre,numero_telefono,correo)
+
+        # FALTA LLAMAR AL METODO PARA AGREGAR EL CONTACTO AL .TXT
 
 # Programa principal         
 if __name__ == "__main__":
