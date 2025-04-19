@@ -16,7 +16,7 @@ class Agenda:
         salir = False
         print("*** Bienvenido a la agenda ***")
         # Muesto los valores de la agenda si hay algo el el .txt
-        self.gestion_contactos.listar_contactos()
+        # self.gestion_contactos.listar_contactos()
         while not salir:
             try:
                 # Desplegamos el menu para que el usuario interactue
@@ -30,7 +30,7 @@ class Agenda:
 
     # Creo un Menu para mostrar las opciones que podemos hacer con nuestra agenda
     def menu_agenda(self):
-        print(f"""--- MENU DE PELICULAS ---
+        print(f"""--- MENU DE LA AGENDA2 ---
               1. Agregar contacto  
               2. Mostrar contactos
               3. Buscar contacto
@@ -56,20 +56,24 @@ class Agenda:
             self.agregar_contacto()
         # Opcion 2 : Mostrar todos los contactos
         elif opcion == 2:
-            pass
+            self.gestion_contactos.listar_contactos()
         # Opcion 3 : Buscar un contacto
         elif opcion == 3:
             pass
         # Opcion 4 : Eliminar un contacto
         elif opcion == 4:
             pass
+        # Opcion 5 : Salir del menu
+        elif opcion == 5:
+            print("Nos vemos pronto !")
+            return True
         # En el caso de que no introduzca una opcion valida se le mostrara un
         # mensaje de error con la opcion que ha seleccionado
         else:
             print(f"Opcion no valida: {opcion}")
 
         # Hago una pausa para que el usuario vea la info 
-        input("\nPresiona Enter para continuar ....1")
+        input("\nPresiona Enter para continuar ....")
         return False
 
     # Metodo para agregar nuevos contactos a la agenda 
