@@ -56,12 +56,12 @@ class GestionContactos:
         # Agregamos una validacion para que no intente imprimir si la lista 
         # esta vacia
         if not self.contactos:
-            print("No se pued listar por que no hay contactos")
+            print("No se puede listar por que no hay contactos")
             return
         
         print("--- Contactos en la agenda ---")
-        for pelicula in self.peliculas:
-            print(pelicula)
+        for contacto in self.contactos:
+            print(contacto)
 
     # Metodo que guarda los conctos en el archivo .txt
     def guardar_contacto_archivo(self,contactos):

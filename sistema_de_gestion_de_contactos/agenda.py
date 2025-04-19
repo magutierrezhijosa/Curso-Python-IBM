@@ -29,7 +29,7 @@ class Agenda:
                 print(f"Ocurrio un erro: {e}")
 
     # Creo un Menu para mostrar las opciones que podemos hacer con nuestra agenda
-    def menu_agenda():
+    def menu_agenda(self):
         print(f"""--- MENU DE PELICULAS ---
               1. Agregar contacto  
               2. Mostrar contactos
@@ -53,7 +53,7 @@ class Agenda:
 
         # Opcion 1 : Agregar un contacto
         if opcion == 1:
-            pass
+            self.agregar_contacto()
         # Opcion 2 : Mostrar todos los contactos
         elif opcion == 2:
             pass
@@ -83,8 +83,11 @@ class Agenda:
         nuevo_contacto = Contacto(nombre,numero_telefono,correo)
 
         # FALTA LLAMAR AL METODO PARA AGREGAR EL CONTACTO AL .TXT
+        self.gestion_contactos.agregar_contacto(nuevo_contacto)
 
 # Programa principal         
 if __name__ == "__main__":
     agenda = Agenda()
     agenda.agenda_contactos()
+
+    
