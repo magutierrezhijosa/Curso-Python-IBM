@@ -62,3 +62,5 @@ class GestionContactos:
         print("--- Contactos en la agenda ---")
         for pelicula in self.peliculas:
             print(pelicula)
+
+    

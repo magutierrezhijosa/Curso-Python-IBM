@@ -15,6 +15,17 @@ class Agenda:
         # Declaro la variable par acontrolar el bucle while
         salir = False
         print("*** Bienvenido a la agenda ***")
+        # Muesto los valores de la agenda si hay algo el el .txt
+        self.gestion_contactos.listar_contactos()
+        while not salir:
+            try:
+                # Desplegamos el menu para que el usuario interactue
+                opcion = self.menu_agenda()
+
+                # Falta ejecutar la opcion que nos envie el user
+
+            except Exception as e:
+                print(f"Ocurrio un erro: {e}")
 
     # Creo un Menu para mostrar las opciones que podemos hacer con nuestra agenda
     def menu_agenda():
@@ -35,7 +46,34 @@ class Agenda:
             print("Por favor, introduce un numero valido.")
 
 
+    # Metodo que nos permite ejecutar una funcion dependiendo de que valor
+    # nos envie el usuario 
+    def ejecutar_opcion(self,opcion):
 
-    # Programa principal         
-    if __name__ == "__main__":
-        agenda = Agenda()
+        # Opcion 1 : Agregar un contacto
+        if opcion == 1:
+            pass
+        # Opcion 2 : Mostrar todos los contactos
+        elif opcion == 2:
+            pass
+        # Opcion 3 : Buscar un contacto
+        elif opcion == 3:
+            pass
+        # Opcion 4 : Eliminar un contacto
+        elif opcion == 4:
+            pass
+        # En el caso de que no introduzca una opcion valida se le mostrara un
+        # mensaje de error con la opcion que ha seleccionado
+        else:
+            print(f"Opcion no valida: {opcion}")
+
+        # Hago una pausa para que el usuario vea la info 
+        input("\nPresiona Enter para continuar ....1")
+        return False
+
+        
+
+# Programa principal         
+if __name__ == "__main__":
+    agenda = Agenda()
+    agenda.agenda_contactos()
