@@ -62,7 +62,7 @@ class Agenda:
             self.buscar()
         # Opcion 4 : Eliminar un contacto
         elif opcion == 4:
-            pass
+            self.eliminar()
         # Opcion 5 : Salir del menu
         elif opcion == 5:
             print("Nos vemos pronto !")
@@ -89,11 +89,19 @@ class Agenda:
         # FALTA LLAMAR AL METODO PARA AGREGAR EL CONTACTO AL .TXT
         self.gestion_contactos.agregar_contacto(nuevo_contacto)
 
+    # Metodo para BUSCAR un contacto en la agenda
     def buscar(self):
         # Pido un nombre de contacto para buscarlo en la agenda
         nombre_para_buscar = input("Introduce el nombre del contacto que quieres buscar: ")
 
         self.gestion_contactos.buscar_contacto(nombre_para_buscar)
+
+    #  Metodo para ELIMINAR un contacto de la agenda
+    def eliminar(self):
+        # Pido un nombre para elminar dicho contacto
+        nombre_para_eliminar = input("Introduce el nombre del contacto a eliminar: ")
+        # Llamamos al metodo para que elimina el contacto de la agenda
+        self.gestion_contactos.eliminar_contacto(nombre_para_eliminar)
 
 # Programa principal         
 if __name__ == "__main__":

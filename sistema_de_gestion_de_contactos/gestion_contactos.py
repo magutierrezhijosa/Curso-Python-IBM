@@ -110,3 +110,49 @@ class GestionContactos:
 
         except Exception as e:
             print(f"ERROR: {e}")
+
+    # Metodo para eliminar un contacto dado por el User
+    def eliminar_contacto(self,name):
+
+        try:
+            # Comprobamos que exista el archivo que vamos a abrir 
+            if os.path.exists(self.NOMBRE_ARCHIVO):
+
+                # Primero  abrimos la lineas y las volcamos en una variable
+                with  open(self.NOMBRE_ARCHIVO,"r",encoding="utf8") as archivo:
+                    lineas = archivo.readlines()
+                
+                # Declaro una variable contador para comprobar si esta el nombre
+                find = False
+                
+                # Abrimos el archivo y lo recorremos para ver si esta el contacto 
+                with open(self.NOMBRE_ARCHIVO,"w" , encoding="utf8") as archivo:
+ 
+                    # Recorremos cada linea de nuestra lista lineas de en la RAM
+                    for linea in lineas:
+                         # Recojo los valores en cada variable
+                        nombre, numero_telefono, correo = linea.strip().split(",")
+                        
+                        # Si el nombre esa diferente al introducido guardamos el valor
+                        # en el archivo .txt para mantenerlo
+                        if nombre != name:
+                            # Sobre escribimos el archivo
+                            archivo.write(linea)
+
+                        else:
+                            find = True
+                
+
+                # Si hemos encontrado el contacto mandamos un mensaje de confirmacion
+                if find:
+                    print(f"Se borro el user con el nombre: {name}")
+                else:
+                    print(f"No se pudo borrar porque no existe el contacto: {name}")
+
+            # Si no existe el archivo .txt mandamos un mensaje
+            else:
+                print("El archivo contactos.txt no existe")
+
+        except Exception as e:
+            print(f"Error al  eliminar: {e}")
+
