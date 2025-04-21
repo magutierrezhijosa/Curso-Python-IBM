@@ -126,7 +126,7 @@ class GestionContactos:
                 find = False
                 
                 # Abrimos el archivo y lo recorremos para ver si esta el contacto 
-                with open(self.NOMBRE_ARCHIVO,"w" , encoding="utf8") as archivo:
+                with open(self.NOMBRE_ARCHIVO, "w" , encoding="utf8") as archivo:
  
                     # Recorremos cada linea de nuestra lista lineas de en la RAM
                     for linea in lineas:
@@ -139,6 +139,7 @@ class GestionContactos:
                             # Sobre escribimos el archivo
                             archivo.write(linea)
 
+
                         else:
                             find = True
                 
@@ -146,6 +147,8 @@ class GestionContactos:
                 # Si hemos encontrado el contacto mandamos un mensaje de confirmacion
                 if find:
                     print(f"Se borro el user con el nombre: {name}")
+                    # Busco los contactos que haya en el archivo txt
+                    self.contactos = self.obtener_contactos()
                 else:
                     print(f"No se pudo borrar porque no existe el contacto: {name}")
 
