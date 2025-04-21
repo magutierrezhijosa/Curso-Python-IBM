@@ -30,7 +30,7 @@ class Agenda:
 
     # Creo un Menu para mostrar las opciones que podemos hacer con nuestra agenda
     def menu_agenda(self):
-        print(f"""--- MENU DE LA AGENDA2 ---
+        print(f"""--- MENU DE LA AGENDA ---
               1. Agregar contacto  
               2. Mostrar contactos
               3. Buscar contacto
