@@ -40,3 +40,26 @@ class Conexion:
         # En el caso de que no sea None retornamos el objeto de tipo pool
         else:
             return cls.pool
+        
+    @classmethod
+    # Metodo para crear nuevos objetos de tipo conexion 
+    def obtener_conexion(cls):
+        return cls.obtener_pool().get_connection()
+    
+    @classmethod
+    # Metodo para cerrar la conexion una vez haya sido utilizada
+    def liberar_conexion(cls, conexion):
+        conexion.close()
+
+# Prueba par comprobar que todo funciona correctamente y esta bien importado
+if __name__ == "__main__":
+
+    # Creamos un objeto pool
+    pool = Conexion.obtener_pool()
+    print(pool)
+    # Creamos un objeto de tipo conexion 
+    conexion1 = pool.get_connection()
+    print(conexion1)
+    # Por ultimo cerramos la conexion 
+    Conexion.liberar_conexion(conexion1)
+    print(f"Se ha liberado el objeto conexion1")
