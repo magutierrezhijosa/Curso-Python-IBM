@@ -18,11 +18,25 @@ class Conexion:
     @classmethod
     # Definimos el motodo de clase con un parametro tipo ***cls*** que nos va a permitir acceder a todas las constantes de nuestra clase
     def obtener_pool(cls):
+        # Ci la variable clase pool es None 
         if cls.pool is None: # Se crea el objeto pool
             try:
                 cls.pool = pooling.MySQLConnectionPool(
+                    # Agregamos valores a cada una de las constantes que hemos ido definiendo
+                    pool_name = cls.POOL_NAME,
+                    pool_size = cls.POOL_SIZE,
+                    host = cls.HOST,
+                    port = cls.DB_PORT,
+                    database = cls.DATABASE,
+                    user = cls.USERNAME,
+                    password = cls.PASSWORD
 
 
                 )
+                return cls.pool
             except Error as e:
                 print(f"Ocurrio un error al obtener pool: {e}")
+
+        # En el caso de que no sea None retornamos el objeto de tipo pool
+        else:
+            return cls.pool
