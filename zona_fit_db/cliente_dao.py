@@ -18,7 +18,7 @@ class ClienteDAO:
         conexion = None
 
         try:
-            # Vamos a pedir una conexion a la clase COnexion
+            # Vamos a pedir una conexion a la clase Conexion
             conexion = Conexion.obtener_conexion()
             # Declaramos la variable de cursor
             cursor = conexion.cursor()
@@ -47,6 +47,27 @@ class ClienteDAO:
                 # Cerramos el cursor
                 cursor.close()
                 Conexion.liberar_conexion(conexion)
+
+    # Creamos otro metodo de clase 
+    @classmethod
+    def  insertar(cls, cliente):
+        # Definimos la variable de conexion
+        conexion = None
+
+        try:
+            pass
+        except Exception as e:
+            print(f"Ocurrio un error al insertar: {e}")
+        finally:
+            # Revisamos el objeto conexion para cerrarlo en el caso de que no sea None
+            if conexion is not None:
+                # Cerramos el cursor
+                cursor.close()
+                Conexion.liberar_conexion(conexion)
+
+
+
+
 
 # Vamos a realizar una prueba para comprobar que recibimos los objetos y ademas 
 # se esten conviertiendo a objetos de tipo cliente 
