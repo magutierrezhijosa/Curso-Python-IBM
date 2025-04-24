@@ -1,6 +1,6 @@
 
 # Creamos la clase ClienteDAO 
-from zona_fit_db.conexion import Conexion
+from conexion import Conexion
 from cliente import Cliente
 
 
@@ -22,6 +22,21 @@ class ClienteDAO:
             conexion = Conexion.obtener_conexion()
             # Declaramos la variable de cursor
             cursor = conexion.cursor()
+            # Ejecutamos la QUERY que tenemos almacenada el la CONSTANTE de clase 
+            # por medio del cursor que hemos creado anteriormente
+            cursor.execute(cls.SELECCIONAR)
+            # Guardamos todos los registros de la QUERY que hicimos al Cliente
+            registros = cursor.fetchall()
+            # Mapeo de clase-tabla cliente
+            clientes =[]
+            for registro in registros:
+                # Guardamos cada registro en una variable cliente
+                cliente = Cliente(registro[0], registro[1], registro[2], registro[3])
+
+                # Agregamos nuestro Objeto de tipo Cliente a nuesta lista de clientes[]
+                clientes.append(cliente)
+            # Por ultimo devolvemos la list ade Objetos de tipo Cliente
+            return clientes
 
         except Exception as e:
             print(f"Ocurrio un error al seleecionar clientes: {e}")
@@ -32,3 +47,11 @@ class ClienteDAO:
                 # Cerramos el cursor
                 cursor.close()
                 Conexion.liberar_conexion(conexion)
+
+# Vamos a realizar una prueba para comprobar que recibimos los objetos y ademas 
+# se esten conviertiendo a objetos de tipo cliente 
+if __name__ == "__main__":
+    # Seleccionas lo cliente
+    clientes = ClienteDAO.seleccionar()
+    for cliente in clientes:
+        print(cliente)
