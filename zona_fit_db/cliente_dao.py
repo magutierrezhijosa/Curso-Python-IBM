@@ -60,11 +60,12 @@ class ClienteDAO:
             # Creamos nuestro objeto cursor  usando la variable conexion
             cursor = conexion.cursor()
             # Agregamos los valores de los parametros segun declaramos en la constante INSERTAR
-            valores =  (cliente.nombre,cliente.apellido,cliente.membresia)
+            valores =  (cliente.nombre, cliente.apellido, cliente.membresia)
+            print(valores)
             # Usando el cursor llamamos al metodo execute para ejecutar la consulta de tipo insert usadon la consstante INSERT
             cursor.execute(cls.INSERTAR, valores)
             # Guardamos los cambios en la base de datos con .commit()
-            cursor.commit()
+            conexion.commit()
             # Podemos retornar de manera opciona cuantos valores se modificaron en la base de datos
             return cursor.rowcount
 
@@ -86,7 +87,7 @@ class ClienteDAO:
 if __name__ == "__main__":
     # Insertar cliente
     # Utilizamos el constructor de la clase cliente sin el id para que sea insertar ya que si le indicamos un id la consulta seria de update
-    cliente1 = Cliente(nombre="Alejandra", apellido="Tellez", menbresia=300)
+    cliente1 = Cliente(nombre="Alejandra", apellido="Tellez", membresia=300)
     # Llamamos al metodo de la clase ClienteDAO para insertar
     clientes_insertados = ClienteDAO.insertar(cliente1)
     # Mostramos en pantalla los clientes que hemos insertado
