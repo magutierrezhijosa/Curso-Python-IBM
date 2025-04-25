@@ -61,7 +61,13 @@ class ClienteDAO:
             cursor = conexion.cursor()
             # Agregamos los valores de los parametros segun declaramos en la constante INSERTAR
             valores =  (cliente.nombre,cliente.apellido,cliente.membresia)
-            # Usando el cursor llamamos al metodo execute 
+            # Usando el cursor llamamos al metodo execute para ejecutar la consulta de tipo insert usadon la consstante INSERT
+            cursor.execute(cls.INSERTAR, valores)
+            # Guardamos los cambios en la base de datos con .commit()
+            cursor.commit()
+            # Podemos retornar de manera opciona cuantos valores se modificaron en la base de datos
+            return cursor.rowcount
+
         except Exception as e:
             print(f"Ocurrio un error al insertar: {e}")
         finally:
@@ -78,6 +84,17 @@ class ClienteDAO:
 # Vamos a realizar una prueba para comprobar que recibimos los objetos y ademas 
 # se esten conviertiendo a objetos de tipo cliente 
 if __name__ == "__main__":
+    # Insertar cliente
+    # Utilizamos el constructor de la clase cliente sin el id para que sea insertar ya que si le indicamos un id la consulta seria de update
+    cliente1 = Cliente(nombre="Alejandra", apellido="Tellez", menbresia=300)
+    # Llamamos al metodo de la clase ClienteDAO para insertar
+    clientes_insertados = ClienteDAO.insertar(cliente1)
+    # Mostramos en pantalla los clientes que hemos insertado
+    print(f"Clientes insertados: {clientes_insertados}")
+    
+    
+    
+    
     # Seleccionas lo cliente
     clientes = ClienteDAO.seleccionar()
     for cliente in clientes:
