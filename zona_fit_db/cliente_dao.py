@@ -55,7 +55,13 @@ class ClienteDAO:
         conexion = None
 
         try:
-            pass
+            # Creamos nuestra conexion llamando a la clase COnexion
+            conexion = Conexion.obtener_conexion()
+            # Creamos nuestro objeto cursor  usando la variable conexion
+            cursor = conexion.cursor()
+            # Agregamos los valores de los parametros segun declaramos en la constante INSERTAR
+            valores =  (cliente.nombre,cliente.apellido,cliente.membresia)
+            # Usando el cursor llamamos al metodo execute 
         except Exception as e:
             print(f"Ocurrio un error al insertar: {e}")
         finally:
