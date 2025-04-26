@@ -114,14 +114,17 @@ class ClienteDAO:
             conexion = Conexion.obtener_conexion()
             # A partir de la conecion creamos el objeto de tipo cursor
             cursor = conexion.cursor()
-            # Declaramos la variable con los valores
-            valores = cliente.id
+            # Declaramos la variable con el valor de id 
+            #***********IMPORTANTE*****************************
+            # PARA QQUE SEA UNA TUPLA DEBEMOS ESCRIBIR UNA COMA DESPUES DE EL VALOR SINO NO LA RECONOCE COMO TUPLA
+            #************************************************
+            valores = (cliente.id,)
             # A partir del objeto cursor ejecutamos la QUERY que teniamos el la constante de clase
             cursor.execute(cls.ELIMINAR, valores)
             # Guardamos los cambios en la DB
             conexion.commit()
-
-            return 
+            # Devolvemos los registros que se han eliminado
+            return cursor.rowcount
 
         except Exception as e:
             print(f"Ocurrio un error al eliminar un cliente: {e}")
