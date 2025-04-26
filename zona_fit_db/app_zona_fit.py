@@ -22,7 +22,7 @@ class AppZonaFit:
                 # Mostramos al usuario el menu para que elija la opcion
                 opcion = self.mostrar_menu()
                 # Ejecutamos la opcion que el usuario eligio
-
+                salir = self.ejecutar_opcion(opcion)
 
             except Exception as e:
 
@@ -51,7 +51,29 @@ class AppZonaFit:
     # Funcion que recoge la opcion que introduce el usuario y ejecuta el metodo para llevar a cabo esa funcion 
     def ejecutar_opcion(self, opcion):
         if opcion == 1:
-            self.cliente_dao.seleccionar()
+            clientes = self.cliente_dao.seleccionar()
+            print(f"Los clientes son : {clientes}")
         elif opcion == 2:
-            
-            self.cliente_dao.insertar()
+            # Pedimos al usuario los valores para poder insertar un nuevo cliente
+            nombre = input("Introduce un nombre para el nuevo cliente: ")
+            apellido = input("Introduce un apellido para el nuevo cliente: ")
+            membresia = input("Introduce la membresia para el nuevo cliente: ")
+            # Lo Guardamos en una tupla
+            nuevo_cliente = (nombre, apellido, membresia)
+            self.cliente_dao.insertar(nuevo_cliente)
+        elif opcion == 3:
+            pass
+        elif opcion == 4:
+            pass
+        elif opcion == 5:
+            print("Hasta la proxima!")
+            return True
+        else:
+            print(f"Opcion no valida : {opcion}")
+
+        input("\nPresiona Enter para continuar ....")
+        return False
+# Programa principal
+if __name__ == "__main__":
+    app_zona_fit = AppZonaFit()
+    app_zona_fit.menu_zona_fit()
