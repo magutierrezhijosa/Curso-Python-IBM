@@ -80,9 +80,30 @@ class ClienteDAO:
 
     @classmethod
     def actualizar(cls,cliente):
-        #Definimos la variable de conexion 
+        # Definimos la variable de conexion 
         conexion = None
-
+        try:
+            # Creamos un objeto de tipo conexion
+            conexion = Conexion.obtener_conexion()
+            # Definimos la variable de cursor y a traves de la conexion creamos un objeto de tipo cursor
+            cursor = conexion.cursor()
+            # recogemos los valores que vamos a introducir como parametros mas adelante
+            valores = (cliente.nombre, cliente.apellido, 
+                       cliente.membresia, cliente.id)
+            # mediante el cursor ejecutamos la QUERY de actualizar nuestra tabla junto con los valores que hemos guardado
+            cursor.execute(cls.ACTUALIZAR, valores)
+            # Finalmente guardamos los cambios con un commit
+            # conexion.commit()
+            # Devolvemos cuantos registros se modificaron 
+            return cursor.rowcount
+        except Exception as e:
+            print(f"Ocurrio un error al actualizar un cliente: {e}")
+        finally:
+            # Revisamos el objeto conexion para cerrarlo en el caso de que no sea None
+            if conexion is not None:
+                # Cerramos el cursor
+                cursor.close()
+                Conexion.liberar_conexion(conexion)
 
 
 # Vamos a realizar una prueba para comprobar que recibimos los objetos y ademas 
