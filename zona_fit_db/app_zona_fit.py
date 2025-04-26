@@ -1,4 +1,5 @@
 from cliente_dao import ClienteDAO
+from cliente import Cliente
 
 # Definimos la clase 
 class AppZonaFit:
@@ -58,18 +59,19 @@ class AppZonaFit:
             
         elif opcion == 2:
             # Pedimos al usuario los valores para poder insertar un nuevo cliente
-            nombre = input("Introduce un nombre para el nuevo cliente: ")
-            apellido = input("Introduce un apellido para el nuevo cliente: ")
-            membresia = input("Introduce la membresia para el nuevo cliente: ")
+            nombre1 = input("Introduce un nombre para el nuevo cliente: ")
+            apellido1 = input("Introduce un apellido para el nuevo cliente: ")
+            membresia1 = input("Introduce la membresia para el nuevo cliente: ")
             # Lo Guardamos en una tupla
-            nuevo_cliente = (nombre, apellido, membresia)
-            self.cliente_dao.insertar(nuevo_cliente)
+            nuevo_cliente = Cliente(nombre = nombre1, apellido = apellido1, membresia = membresia1)
+            clientes_insertados = self.cliente_dao.insertar(nuevo_cliente)
+            print(f"Clientes insertados : {clientes_insertados}")
         elif opcion == 3:
             pass
         elif opcion == 4:
             pass
         elif opcion == 5:
-            print("Hasta la proxima!")
+            print("Hasta la proxima !")
             return True
         else:
             print(f"Opcion no valida : {opcion}")
