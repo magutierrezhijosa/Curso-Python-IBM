@@ -93,7 +93,7 @@ class ClienteDAO:
             # mediante el cursor ejecutamos la QUERY de actualizar nuestra tabla junto con los valores que hemos guardado
             cursor.execute(cls.ACTUALIZAR, valores)
             # Finalmente guardamos los cambios con un commit
-            # conexion.commit()
+            conexion.commit()
             # Devolvemos cuantos registros se modificaron 
             return cursor.rowcount
         except Exception as e:
@@ -109,15 +109,18 @@ class ClienteDAO:
 # Vamos a realizar una prueba para comprobar que recibimos los objetos y ademas 
 # se esten conviertiendo a objetos de tipo cliente 
 if __name__ == "__main__":
-    # Insertar cliente
-    # Utilizamos el constructor de la clase cliente sin el id para que sea insertar ya que si le indicamos un id la consulta seria de update
-    cliente1 = Cliente(nombre="Alejandra", apellido="Tellez", membresia=300)
-    # Llamamos al metodo de la clase ClienteDAO para insertar
-    clientes_insertados = ClienteDAO.insertar(cliente1)
-    # Mostramos en pantalla los clientes que hemos insertado
-    print(f"Clientes insertados: {clientes_insertados}")
+    # # Insertar cliente
+    # # Utilizamos el constructor de la clase cliente sin el id para que sea insertar ya que si le indicamos un id la consulta seria de update
+    # cliente1 = Cliente(nombre="Alejandra", apellido="Tellez", membresia=300)
+    # # Llamamos al metodo de la clase ClienteDAO para insertar
+    # clientes_insertados = ClienteDAO.insertar(cliente1)
+    # # Mostramos en pantalla los clientes que hemos insertado
+    # print(f"Clientes insertados: {clientes_insertados}")
     
-    
+    # Actualizar un cliente 
+    cliente_actualizar = Cliente(3, "Alexa", "Tellez", 400)
+    clientes_actualizados = ClienteDAO.actualizar(cliente_actualizar)
+    print(f"Clientes actualizados: {clientes_actualizados}")
     
     
     # Seleccionas lo cliente
