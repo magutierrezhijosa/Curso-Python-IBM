@@ -52,7 +52,10 @@ class AppZonaFit:
     def ejecutar_opcion(self, opcion):
         if opcion == 1:
             clientes = self.cliente_dao.seleccionar()
-            print(f"Los clientes son : {clientes}")
+            print(f"Los clientes son : ")
+            for cliente in clientes:
+                print(cliente)
+            
         elif opcion == 2:
             # Pedimos al usuario los valores para poder insertar un nuevo cliente
             nombre = input("Introduce un nombre para el nuevo cliente: ")
