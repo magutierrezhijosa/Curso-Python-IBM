@@ -79,7 +79,13 @@ class AppZonaFit:
             # Mostramos en pantalla los rescultados obtenidos de la consulta
             print(f"Clientes actualizados : {clientes_actualizados}")
         elif opcion == 4:
-            pass
+            # Pedimos al usuario la id del cliente que desea eliminar 
+            id = input("Introduce el id para eliminar cliente: ")
+
+            cliente_eliminar = Cliente(id = id)
+            clientes_eliminados = self.cliente_dao.eliminar(cliente_eliminar)
+            print(f"Se eliminaron los clientes: {clientes_eliminados}")
+
         elif opcion == 5:
             print("Hasta la proxima !")
             return True
