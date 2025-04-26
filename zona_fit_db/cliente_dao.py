@@ -1,5 +1,5 @@
 
-# Creamos la clase ClienteDAO 
+# Creamos la clase ClienteDAO
 from conexion import Conexion
 from cliente import Cliente
 
@@ -13,7 +13,7 @@ class ClienteDAO:
     ELIMINAR = "DELETE FROM cliente WHERE id=%s"
 
     @classmethod
-    # Trabajamos con metodos de clase 
+    # Trabajamos con metodos de clase
     def seleccionar(cls):
         conexion = None
 
@@ -22,7 +22,7 @@ class ClienteDAO:
             conexion = Conexion.obtener_conexion()
             # Declaramos la variable de cursor
             cursor = conexion.cursor()
-            # Ejecutamos la QUERY que tenemos almacenada el la CONSTANTE de clase 
+            # Ejecutamos la QUERY que tenemos almacenada el la CONSTANTE de clase
             # por medio del cursor que hemos creado anteriormente
             cursor.execute(cls.SELECCIONAR)
             # Guardamos todos los registros de la QUERY que hicimos al Cliente
@@ -40,7 +40,7 @@ class ClienteDAO:
 
         except Exception as e:
             print(f"Ocurrio un error al seleecionar clientes: {e}")
-        # 
+        #
         finally:
             # Revisamos el objeto conexion para cerrarlo en el caso de que no sea None
             if conexion is not None:
@@ -48,7 +48,7 @@ class ClienteDAO:
                 cursor.close()
                 Conexion.liberar_conexion(conexion)
 
-    # Creamos otro metodo de clase 
+    # Creamos otro metodo de clase
     @classmethod
     def  insertar(cls, cliente):
         # Definimos la variable de conexion
@@ -80,7 +80,7 @@ class ClienteDAO:
 
     @classmethod
     def actualizar(cls,cliente):
-        # Definimos la variable de conexion 
+        # Definimos la variable de conexion
         conexion = None
         try:
             # Creamos un objeto de tipo conexion
@@ -88,13 +88,13 @@ class ClienteDAO:
             # Definimos la variable de cursor y a traves de la conexion creamos un objeto de tipo cursor
             cursor = conexion.cursor()
             # recogemos los valores que vamos a introducir como parametros mas adelante
-            valores = (cliente.nombre, cliente.apellido, 
+            valores = (cliente.nombre, cliente.apellido,
                        cliente.membresia, cliente.id)
             # mediante el cursor ejecutamos la QUERY de actualizar nuestra tabla junto con los valores que hemos guardado
             cursor.execute(cls.ACTUALIZAR, valores)
             # Finalmente guardamos los cambios con un commit
             conexion.commit()
-            # Devolvemos cuantos registros se modificaron 
+            # Devolvemos cuantos registros se modificaron
             return cursor.rowcount
         except Exception as e:
             print(f"Ocurrio un error al actualizar un cliente: {e}")
@@ -114,7 +114,7 @@ class ClienteDAO:
             conexion = Conexion.obtener_conexion()
             # A partir de la conecion creamos el objeto de tipo cursor
             cursor = conexion.cursor()
-            # Declaramos la variable con el valor de id 
+            # Declaramos la variable con el valor de id
             #***********IMPORTANTE*****************************
             # PARA QQUE SEA UNA TUPLA DEBEMOS ESCRIBIR UNA COMA DESPUES DE EL VALOR SINO NO LA RECONOCE COMO TUPLA
             #************************************************
@@ -133,10 +133,10 @@ class ClienteDAO:
             if conexion is not None:
                 # Cerramos el cursor
                 cursor.close()
-                Conexion.liberar_conexion(conexion)    
+                Conexion.liberar_conexion(conexion)
 
-# Vamos a realizar una prueba para comprobar que recibimos los objetos y ademas 
-# se esten conviertiendo a objetos de tipo cliente 
+# Vamos a realizar una prueba para comprobar que recibimos los objetos y ademas
+# se esten conviertiendo a objetos de tipo cliente
 if __name__ == "__main__":
     # # Insertar cliente
     # # Utilizamos el constructor de la clase cliente sin el id para que sea insertar ya que si le indicamos un id la consulta seria de update
@@ -145,13 +145,17 @@ if __name__ == "__main__":
     # clientes_insertados = ClienteDAO.insertar(cliente1)
     # # Mostramos en pantalla los clientes que hemos insertado
     # print(f"Clientes insertados: {clientes_insertados}")
-    
-    # Actualizar un cliente 
-    cliente_actualizar = Cliente(3, "Alexa", "Tellez", 400)
-    clientes_actualizados = ClienteDAO.actualizar(cliente_actualizar)
-    print(f"Clientes actualizados: {clientes_actualizados}")
-    
-    
+
+    # # Actualizar un cliente
+    # cliente_actualizar = Cliente(3, "Alexa", "Tellez", 400)
+    # clientes_actualizados = ClienteDAO.actualizar(cliente_actualizar)
+    # print(f"Clientes actualizados: {clientes_actualizados}")
+
+    # Eliminar cliente
+    cliente_eliminar = Cliente(id=3)
+    clientes_eliminados = ClienteDAO.eliminar(cliente_eliminar)
+    print(f"Se elimino el usuario: {clientes_eliminados}")
+
     # Seleccionas lo cliente
     clientes = ClienteDAO.seleccionar()
     for cliente in clientes:
