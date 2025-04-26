@@ -105,6 +105,32 @@ class ClienteDAO:
                 cursor.close()
                 Conexion.liberar_conexion(conexion)
 
+    @classmethod
+    def eliminar(cls,cliente):
+        conexion = None
+
+        try:
+            # Creamos el objeto de tipo Conexion
+            conexion = Conexion.obtener_conexion()
+            # A partir de la conecion creamos el objeto de tipo cursor
+            cursor = conexion.cursor()
+            # Declaramos la variable con los valores
+            valores = cliente.id
+            # A partir del objeto cursor ejecutamos la QUERY que teniamos el la constante de clase
+            cursor.execute(cls.ELIMINAR, valores)
+            # Guardamos los cambios en la DB
+            conexion.commit()
+
+            return 
+
+        except Exception as e:
+            print(f"Ocurrio un error al eliminar un cliente: {e}")
+        finally:
+            # Revisamos el objeto conexion para cerrarlo en el caso de que no sea None
+            if conexion is not None:
+                # Cerramos el cursor
+                cursor.close()
+                Conexion.liberar_conexion(conexion)    
 
 # Vamos a realizar una prueba para comprobar que recibimos los objetos y ademas 
 # se esten conviertiendo a objetos de tipo cliente 
