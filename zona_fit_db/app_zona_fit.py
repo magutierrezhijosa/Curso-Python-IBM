@@ -67,7 +67,17 @@ class AppZonaFit:
             clientes_insertados = self.cliente_dao.insertar(nuevo_cliente)
             print(f"Clientes insertados : {clientes_insertados}")
         elif opcion == 3:
-            pass
+             # Pedimos al usuario los valores para poder actualizar un cliente
+            id = input("Introduce el id para editar cliente: ")
+            nombre = input("Introduce un nombre para editar cliente: ")
+            apellido = input("Introduce un apellido para editar cliente: ")
+            membresia = input("Introduce la membresia para editar cliente: ")
+            # Declaro la variable donde guardo los valores del cliente 
+            cliente_actualizar = Cliente(id, nombre, apellido, membresia)
+            # Guardamos los resultados en otra variable
+            clientes_actualizados = self.cliente_dao.actualizar(cliente_actualizar)
+            # Mostramos en pantalla los rescultados obtenidos de la consulta
+            print(f"Clientes actualizados : {clientes_actualizados}")
         elif opcion == 4:
             pass
         elif opcion == 5:
