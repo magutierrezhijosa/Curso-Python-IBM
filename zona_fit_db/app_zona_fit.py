@@ -82,8 +82,11 @@ class AppZonaFit:
             # Pedimos al usuario la id del cliente que desea eliminar 
             id = input("Introduce el id para eliminar cliente: ")
 
+            # Creamos un objeto tipo cliente con el id que nos envio el user
             cliente_eliminar = Cliente(id = id)
+            # Llamamos al metodo que nos elminia clientes dentro de cliente_dao
             clientes_eliminados = self.cliente_dao.eliminar(cliente_eliminar)
+            # Mostramos un mensaje de confirmaciuon al user
             print(f"Se eliminaron los clientes: {clientes_eliminados}")
 
         elif opcion == 5:
