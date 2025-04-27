@@ -27,6 +27,7 @@ class AppZonaFit:
 
             except Exception as e:
 
+                # En el caso que ocurra un erro lo mostramos por pantalla
                 print(f"Ha ocurrido un error: {e}")
     
     # Funcion que imprime el menu y recoge la opcion 
