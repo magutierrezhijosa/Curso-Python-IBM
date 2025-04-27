@@ -68,10 +68,10 @@ class AppZonaFit:
             print(f"Clientes insertados : {clientes_insertados}")
         elif opcion == 3:
              # Pedimos al usuario los valores para poder actualizar un cliente
-            id = input("Introduce el id para editar cliente: ")
-            nombre = input("Introduce un nombre para editar cliente: ")
-            apellido = input("Introduce un apellido para editar cliente: ")
-            membresia = input("Introduce la membresia para editar cliente: ")
+            id = input("Introduce el id para editar cliente : ")
+            nombre = input("Introduce un nombre para editar cliente : ")
+            apellido = input("Introduce un apellido para editar cliente : ")
+            membresia = input("Introduce la membresia para editar cliente : ")
             # Declaro la variable donde guardo los valores del cliente 
             cliente_actualizar = Cliente(id, nombre, apellido, membresia)
             # Guardamos los resultados en otra variable
@@ -87,6 +87,7 @@ class AppZonaFit:
             print(f"Se eliminaron los clientes: {clientes_eliminados}")
 
         elif opcion == 5:
+            # Nos despedimos del usuario al salir de la aplicacion
             print("Hasta la proxima !")
             return True
         else:
