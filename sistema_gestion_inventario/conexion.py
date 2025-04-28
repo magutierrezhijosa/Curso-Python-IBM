@@ -11,7 +11,7 @@ class Conexion:
     DB_PORT = "3303"
     HOST = "localhost"
     POOL_SIZE = 5
-    POOL_NAME = "zona_fit_pool"
+    POOL_NAME = "inventario_pool"
     pool = None
 
     @classmethod
@@ -31,13 +31,39 @@ class Conexion:
                     port = cls.DB_PORT,
                     database = cls.DATABASE,
                     user = cls.USERNAME,
-                    pasword = cls.PASSWORD
+                    password = cls.PASSWORD
 
                 )
-
+                return cls.pool
             except Exception as e:
                 print(f"Ocurrio un error al obtener el pool: {e}")
 
         # En el caso de que no sea None retornamos el objeto tipo pool
         else:
             return cls.pool
+        
+    
+    @classmethod
+    # Metodo par acrear nuevos objetos de tipo conexion 
+    def obtener_conexion(cls):
+        return cls.obtener_pool().get_connection()
+    
+    @classmethod
+    # Metodo para cerrar la conexion una vez se haya usado
+    def liberar_conexion(cls,conexion):
+        conexion.close()
+
+# # Prueba par comprobar que todo funciona correctamente y esta bien importado
+# if __name__ == "__main__":
+
+#     # Creamos un objeto pool
+#     conexion = Conexion()
+#     print(conexion)
+#     # Creamos un objeto de tipo conexion 
+#     pool = conexion.obtener_pool()
+#     obtener_conexion = conexion.obtener_conexion()
+#     print(obtener_conexion) 
+#     print(pool) 
+#     # Por ultimo cerramos la conexion 
+#     Conexion.liberar_conexion(obtener_conexion)
+#     print(f"Se ha liberado el objeto obtener_conexion")
