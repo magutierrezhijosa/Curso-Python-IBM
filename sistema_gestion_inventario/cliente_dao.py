@@ -1,4 +1,5 @@
 from conexion import Conexion
+from producto import Producto
 
 # Creamos la clase ClienteDAO
 class ClienteDAO:
@@ -29,12 +30,20 @@ class ClienteDAO:
             # por medio del cursor que hemos creado anteriormente
             cursor.execute(cls.SELECCIONAR)
 
-            # Guardamos todos los registros de la Query que hicimos al Cliente
+            # Guardamos todos los registros de la Query que hicimos al Producto
             registros = cursor.fetchall()
 
             # Mapeo de clase-tabla productos
-            clientes = []
-            
+            productos = []
+            for registro in registros:
+
+                # Guardamos cada registro en una variable producto
+                producto = Producto(registro[0],registro[1],registro[2],registro[3],registro[4])
+                
+                # Agregaqmos nuestro objeto de tipo Producto
+                productos.append(producto)
 
         except Exception as e:
             print(f"Ocurrio une error al seleccionar un producto: {e}")
+
+        
