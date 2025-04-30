@@ -59,5 +59,6 @@ class ProductoDAO:
 if __name__ == "__main__": 
 
     productos = ProductoDAO.seleccionar()
-
-    print(productos)
+    print(f"Los clientes son : ")
+    for producto in productos:
+        print(producto)
