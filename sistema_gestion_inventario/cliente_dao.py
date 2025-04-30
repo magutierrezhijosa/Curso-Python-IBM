@@ -1,4 +1,4 @@
-
+from conexion import Conexion
 
 # Creamos la clase ClienteDAO
 class ClienteDAO:
@@ -17,3 +17,24 @@ class ClienteDAO:
 
         # Declaramos la variable para guardar el estado de la conexion
         conexion = None
+
+        try:
+            # Vamos a pedir una conexion a la clase Conexion
+            conexion = Conexion.obtener_conexion()
+
+            # Declaramos la variable de cursor
+            cursor = conexion.cursor()
+
+            # Ejecutamos la QUERY que tenemos almacenada en la CONSTANTE de clase
+            # por medio del cursor que hemos creado anteriormente
+            cursor.execute(cls.SELECCIONAR)
+
+            # Guardamos todos los registros de la Query que hicimos al Cliente
+            registros = cursor.fetchall()
+
+            # Mapeo de clase-tabla productos
+            clientes = []
+            
+
+        except Exception as e:
+            print(f"Ocurrio une error al seleccionar un producto: {e}")
