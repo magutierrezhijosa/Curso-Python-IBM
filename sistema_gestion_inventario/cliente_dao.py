@@ -2,15 +2,15 @@ from conexion import Conexion
 from producto import Producto
 
 # Creamos la clase ClienteDAO
-class ClienteDAO:
+class ProductoDAO:
 
     # Esta clase va a tener la funcionalidad para poder interactuar con objetos de tipo producto y realizar CRUD con los datos
 
     # Declaramos las constantes de clase par ahacer posteriormente consultas con ellas
-    SELECCIONAR = "SELECT * FROM producto ORDER BY id"
-    INSERTAR = "INSERT INTO producto(nombre, cantidad, precio, categoria) VALUES (%s, %s, %s)"
-    ACTUALIZAR = "UPDATE producto SET nombre=%s, cantidad=%s, precio=%s, categoria=%s"
-    ELIMINAR = "DELETE FROM producto WHERE id=%s"
+    SELECCIONAR = "SELECT * FROM productos ORDER BY id"
+    INSERTAR = "INSERT INTO productos(nombre, cantidad, precio, categoria) VALUES (%s, %s, %s)"
+    ACTUALIZAR = "UPDATE productos SET nombre=%s, cantidad=%s, precio=%s, categoria=%s"
+    ELIMINAR = "DELETE FROM productos WHERE id=%s"
 
     # Vamos a crear los metodos de clase para realizar las consultas a la base de datos
     @classmethod
@@ -43,7 +43,21 @@ class ClienteDAO:
                 # Agregaqmos nuestro objeto de tipo Producto
                 productos.append(producto)
 
+            # Por ultimo devolvemos la lista de Objetos de tipo Producto
+            return productos
+
         except Exception as e:
             print(f"Ocurrio une error al seleccionar un producto: {e}")
 
-        
+        finally:
+            # Revisamos el objeto conexion para cerrarlo en el caso de que no sea None
+            if conexion is not None:
+                # Cerramos el cursor
+                cursor.close()
+                Conexion.liberar_conexion(conexion)
+
+if __name__ == "__main__": 
+
+    productos = ProductoDAO.seleccionar()
+
+    print(productos)
