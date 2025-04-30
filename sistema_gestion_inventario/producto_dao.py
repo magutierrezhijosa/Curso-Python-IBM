@@ -13,6 +13,48 @@ class ProductoDAO:
     ELIMINAR = "DELETE FROM productos WHERE id=%s"
 
     # Vamos a crear los metodos de clase para realizar las consultas a la base de datos
+
+    @classmethod
+    # Definimos el metodo para agregar nuevos productos a nuestra tabla productos
+    def insertar(cls,producto):
+
+        # Creamos la variable que va a guardar nuestra conexion
+        conexion = None
+
+        # Iniciamos un bloque Try Exception
+        try:
+
+            # Creamos un objeto de tipo Conexion
+            conexion = Conexion.obtener_conexion()
+
+            # Creamos un objeto de tipo cursor 
+            cursor = conexion.cursor()
+
+            # Recogemos los valores que nos envie el User
+            valores = (producto.nombre, producto.cantidad, producto.precio, producto.categoria)
+
+            # Ejecutamos la QUERY desde nuestro cursor
+            cursor.execute(cls.INSERTAR, valores)
+
+            # Guardamos los cambios en la base de datos con .commit()
+            conexion.commit()
+
+            # Podemos retornar de manera opcional cuantos valores se modificaron en la base de datos
+            return cursor.rowcount
+
+        except Exception as e:
+
+            # Mostramos el error por pantalla
+            print(f"Ocurrio un error al agregar un producto: {e}")
+
+        finally:
+            # Revisamos el objeto conexion para cerrarlo en el caso de que no sea None
+            if conexion is not None:
+                # Cerramos el cursor
+                cursor.close()
+                # Cerramos la conexion
+                Conexion.liberar_conexion(conexion)
+            
     @classmethod
     def seleccionar(cls):
 
@@ -55,6 +97,9 @@ class ProductoDAO:
                 # Cerramos el cursor
                 cursor.close()
                 Conexion.liberar_conexion(conexion)
+
+
+    # Declaramos el metodo de la clase 
 
 if __name__ == "__main__": 
 
