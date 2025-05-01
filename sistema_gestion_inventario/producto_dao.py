@@ -8,7 +8,7 @@ class ProductoDAO:
 
     # Declaramos las constantes de clase par ahacer posteriormente consultas con ellas
     SELECCIONAR = "SELECT * FROM productos ORDER BY id"
-    INSERTAR = "INSERT INTO productos(nombre, cantidad, precio, categoria) VALUES (%s, %s, %s)"
+    INSERTAR = "INSERT INTO productos(nombre, cantidad, precio, categoria) VALUES (%s, %s, %s, %s)"
     ACTUALIZAR = "UPDATE productos SET nombre=%s, cantidad=%s, precio=%s, categoria=%s"
     ELIMINAR = "DELETE FROM productos WHERE id=%s"
 
@@ -32,7 +32,7 @@ class ProductoDAO:
 
             # Recogemos los valores que nos envie el User
             valores = (producto.nombre, producto.cantidad, producto.precio, producto.categoria)
-
+            print(f"Estos son lso valores que vamos a introducir: {valores}")
             # Ejecutamos la QUERY desde nuestro cursor
             cursor.execute(cls.INSERTAR, valores)
 
@@ -98,12 +98,42 @@ class ProductoDAO:
                 cursor.close()
                 Conexion.liberar_conexion(conexion)
 
+    @classmethod
+    # Declaramos el metodo de clase buscar 
+    # el cual permite al usuario buscar un producto por nombre
+    def buscar(cls,producto):
+
+        # Inicializamos la variable donde se guarda la conexion
+        conexion = None
+
+        try:
+
+            # Creamos el Objeto de tipo Conexion
+            conexion = Conexion.obtener_conexion()
+
+            # Creamos el objeto de tipo cursor
+            cursor = conexion.cursor()
+
+            # 
+
+        except Exception as e:
+            print(f"Ha ocurrido un error al buscar un producto: {e}")
+
 
     # Declaramos el metodo de la clase 
 
 if __name__ == "__main__": 
 
+    
+    # Prueba para el metodo de clase insertar
+    # Creamos un objeto de tipo producto
+    producto_insertar = Producto(nombre="Monitor", cantidad=50, precio=200, categoria="Tech")
+    response = ProductoDAO.insertar(producto_insertar)
+    print(f"Productos insertados : {response}")
+
+
+
     productos = ProductoDAO.seleccionar()
-    print(f"Los clientes son : ")
+    print(f"Los productos son : ")
     for producto in productos:
         print(producto)
