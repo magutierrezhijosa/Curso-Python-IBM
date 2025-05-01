@@ -148,6 +148,23 @@ class ProductoDAO:
                 # Cerramos la conexion
                 Conexion.liberar_conexion(conexion)
 
+    @classmethod
+    # Declaramos el metodo de clase actualizar
+    # Permite al usuario actualizar la informacion de un producto
+    def actualizar():
+
+        # Declaramos la variable de conexion 
+        conexion = None
+
+        try:
+
+            pass
+
+        except Exception as e:
+
+            # Mostramos en pantalla el error 
+            print(f"Ocurrio un erro al actualizar: {e}")
+
 
     
 
