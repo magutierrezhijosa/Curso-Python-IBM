@@ -119,11 +119,14 @@ class ProductoDAO:
             #IMPORTANTE poner la coma al final para que sea una tupla
             valores = (producto.id,)
 
+            print(f"Los valores para buscar son: {valores}")
             # Ejecutamos  la QUERY
             cursor.execute(cls.BUSCAR, valores)
 
             # Recogemos la respuesta de la QUERY
             registro = cursor.fetchall()
+
+            
 
             # Devolvemos la respuesta que nos envio la QUERY
             return registro
@@ -147,13 +150,17 @@ class ProductoDAO:
 if __name__ == "__main__": 
 
     
-    # Prueba para el metodo de clase insertar
-    # Creamos un objeto de tipo producto
-    producto_insertar = Producto(nombre="Monitor", cantidad=50, precio=200, categoria="Tech")
-    response = ProductoDAO.insertar(producto_insertar)
-    print(f"Productos insertados : {response}")
+    # # Prueba para el metodo de clase insertar
+    # # Creamos un objeto de tipo producto
+    # producto_insertar = Producto(nombre="Monitor", cantidad=50, precio=200, categoria="Tech")
+    # response = ProductoDAO.insertar(producto_insertar)
+    # print(f"Productos insertados : {response}")
+    valores = Producto(id=2)
+    productos = ProductoDAO.buscar(valores)
 
-
+    print(f"Este es el producto que buscabas es: ")
+    for producto in productos:
+        print(producto)
 
     productos = ProductoDAO.seleccionar()
     print(f"Los productos son : ")
