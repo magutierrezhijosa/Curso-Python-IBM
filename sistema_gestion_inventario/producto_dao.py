@@ -26,7 +26,7 @@ class ProductoDAO:
         try:
 
             # Creamos un objeto de tipo Conexion
-            conexion = Conexion.obtener_conexion()
+            conexion = Conexion.obtener_conexion() 
 
             # Creamos un objeto de tipo cursor 
             cursor = conexion.cursor()
@@ -115,10 +115,31 @@ class ProductoDAO:
             # Creamos el objeto de tipo cursor
             cursor = conexion.cursor()
 
+            # Guardamos los valores en un tupla para enviar los en una QUERY
+            #IMPORTANTE poner la coma al final para que sea una tupla
+            valores = (producto.id,)
+
             # Ejecutamos  la QUERY
+            cursor.execute(cls.BUSCAR, valores)
+
+            # Recogemos la respuesta de la QUERY
+            registro = cursor.fetchall()
+
+            # Devolvemos la respuesta que nos envio la QUERY
+            return registro
 
         except Exception as e:
             print(f"Ha ocurrido un error al buscar un producto: {e}")
+
+        finally:
+
+            # Comprobamos que la conexion no sea None
+            if conexion is not None:
+
+                # Cerramos el cursor
+                cursor.close()
+                # Cerramos la conexion
+                Conexion.liberar_conexion(conexion)
 
 
     # Declaramos el metodo de la clase 
