@@ -9,6 +9,7 @@ class ProductoDAO:
     # Declaramos las constantes de clase par ahacer posteriormente consultas con ellas
     SELECCIONAR = "SELECT * FROM productos ORDER BY id"
     INSERTAR = "INSERT INTO productos(nombre, cantidad, precio, categoria) VALUES (%s, %s, %s, %s)"
+    BUSCAR = "SELECT * FROM productos WHERE nombre=%s"
     ACTUALIZAR = "UPDATE productos SET nombre=%s, cantidad=%s, precio=%s, categoria=%s"
     ELIMINAR = "DELETE FROM productos WHERE id=%s"
 
@@ -114,7 +115,7 @@ class ProductoDAO:
             # Creamos el objeto de tipo cursor
             cursor = conexion.cursor()
 
-            # 
+            # Ejecutamos  la QUERY
 
         except Exception as e:
             print(f"Ha ocurrido un error al buscar un producto: {e}")
