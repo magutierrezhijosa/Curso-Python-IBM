@@ -117,7 +117,7 @@ class ProductoDAO:
 
             # Guardamos los valores en un tupla para enviar los en una QUERY
             #IMPORTANTE poner la coma al final para que sea una tupla
-            valores = (producto.id,)
+            valores = (producto.nombre,)
 
             print(f"Los valores para buscar son: {valores}")
             # Ejecutamos  la QUERY
@@ -126,10 +126,14 @@ class ProductoDAO:
             # Recogemos la respuesta de la QUERY
             registro = cursor.fetchall()
 
-            
+            print(f"Este es la respueste de la QUERY: {registro}")
+
+            producto_buscado = Producto(registro[0][0], registro[0][1], registro[0][2], registro[0][3], registro[0][4])
+
+            print(f"Este es el resultado de producto_buscado: {producto_buscado}")
 
             # Devolvemos la respuesta que nos envio la QUERY
-            return registro
+            return producto_buscado
 
         except Exception as e:
             print(f"Ha ocurrido un error al buscar un producto: {e}")
@@ -145,7 +149,7 @@ class ProductoDAO:
                 Conexion.liberar_conexion(conexion)
 
 
-    # Declaramos el metodo de la clase 
+    
 
 if __name__ == "__main__": 
 
@@ -155,12 +159,11 @@ if __name__ == "__main__":
     # producto_insertar = Producto(nombre="Monitor", cantidad=50, precio=200, categoria="Tech")
     # response = ProductoDAO.insertar(producto_insertar)
     # print(f"Productos insertados : {response}")
-    valores = Producto(id=2)
-    productos = ProductoDAO.buscar(valores)
+    valores = Producto(nombre="Bicicleta")
+    producto_buscado = ProductoDAO.buscar(valores)
 
-    print(f"Este es el producto que buscabas es: ")
-    for producto in productos:
-        print(producto)
+    print(f"Este es el producto que buscabas es: {producto_buscado} ")
+    
 
     productos = ProductoDAO.seleccionar()
     print(f"Los productos son : ")
