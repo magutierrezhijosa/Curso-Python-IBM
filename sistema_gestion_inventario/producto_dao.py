@@ -151,14 +151,21 @@ class ProductoDAO:
     @classmethod
     # Declaramos el metodo de clase actualizar
     # Permite al usuario actualizar la informacion de un producto
-    def actualizar():
+    def actualizar(cls, producto):
 
         # Declaramos la variable de conexion 
         conexion = None
 
         try:
 
-            pass
+            # Creamos el objeto de tipo Conexion
+            conexion = Conexion.obtener_conexion()
+
+            # Creamos el objeto de tipo cursor
+            cursor = conexion.cursor()
+
+            # Recogemos los valores del objeto
+
 
         except Exception as e:
 
