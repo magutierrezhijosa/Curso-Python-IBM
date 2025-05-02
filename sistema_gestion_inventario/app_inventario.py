@@ -131,7 +131,20 @@ class AppInventario:
             # Mostramos en pantalla el resultado
             print(f"El producto se actualizo correctamente : {registro}")
 
+        # Opcion Eliminar un producto del inventario
+        elif opcion == 5:
 
+            # Vamos a pedir al User que nos introduzca una id 
+            id = input("Introduce la id del producto:  ")
+
+            # Creamos un objeto de tipo producto con la id dada
+            producto_para_eliminar = Producto(id=id)
+
+            # Llamamos a la funcion de clienteDAO eliminar
+            registro = self.producto_dao.eliminar(producto_para_eliminar)
+
+            # Mostramos en pantaalla el registro
+            print(f"Se elimino {registro} producto")
 
         elif opcion == 6:
 
