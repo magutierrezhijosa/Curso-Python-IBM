@@ -20,7 +20,11 @@ class AppInventario:
 
             try:
 
-                pass
+                # En primer lugar vamos a llamar a mostrar menu para que el User nos envie la opcion que desea realizar
+                opcion = self.mostrar_menu()
+
+                # Despues de recoger la opcion deseada vamos a ejecutar dicha opcion 
+
 
             except Exception as e:
 
@@ -42,5 +46,34 @@ class AppInventario:
                     6. Salir
             """)
         
+        # Recogemos el valor de la opcion que nos instropduzca el User
+        opcion = input("Introduce una opcion del menu: ")
+
+        # Comprobamos si la opcion que introdujo el User es un digito
+        if opcion.isdigit():
+            # Si es un digito lo devolvemos como un entero
+            return int(opcion)
+        else:
+            # Sino es un digito le mandamos un error al usuario 
+            print(f"La opcion que has introducido no es un nuemero: {opcion}")
+        
     # Declaramos un metodo para ejecutar la opcion que ha introducido el User
-    
+    def ejecutar_opcion(self, opcion):
+
+        # Dependiendo de la opcion que se envie se ejecutaran unas funciones
+
+        # Opcion de AGREGAR un producto
+        if opcion == 1:
+            
+            # Vamos a preguntar al User por los datos del nuevo producto
+            nombre = input("Introduce el nombre del nuevo producto:  ")
+            cantidad = input("Introduce la cantidad del nuevo producto:  ")
+            precio = input("Introduce el precio del nuevo producto:  ")
+            categoria = input("Introduce la categoria del nuevo producto:  ")
+
+            
+
+# Declaramos el programa principal
+if __name__ == "__main__":
+
+    pass
