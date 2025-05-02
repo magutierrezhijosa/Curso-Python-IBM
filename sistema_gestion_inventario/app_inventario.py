@@ -1,4 +1,5 @@
 from producto_dao import ProductoDAO
+from producto import Producto
 
 class AppInventario:
 
@@ -24,7 +25,7 @@ class AppInventario:
                 opcion = self.mostrar_menu()
 
                 # Despues de recoger la opcion deseada vamos a ejecutar dicha opcion 
-
+                salir = self.ejecutar_opcion(opcion)
 
             except Exception as e:
 
@@ -71,9 +72,27 @@ class AppInventario:
             precio = input("Introduce el precio del nuevo producto:  ")
             categoria = input("Introduce la categoria del nuevo producto:  ")
 
-            
+            # Creo un objeto de tipo producto con los datos que nos dio el USER
+            nuevo_producto = Producto(nombre=nombre,cantidad=cantidad,precio=precio,categoria=categoria)
+
+            # Llamamos a la funcion de ClienteDao insertar()
+            registro = self.producto_dao.insertar(nuevo_producto)
+
+            # Mostramos los resultados de la consulta
+            print(f"Productos insertados: {registro}")
+
+
+
+        elif opcion == 6:
+
+            # Nos despedimos del User
+            print("Hasta la proxima .....")
+            # Cambiamos la variable salir para no volver a entrar en el bucle 
+            return True
 
 # Declaramos el programa principal
 if __name__ == "__main__":
 
-    pass
+    app_inventario = AppInventario()
+
+    app_inventario.menu_inventario()

@@ -32,7 +32,7 @@ class ProductoDAO:
             cursor = conexion.cursor()
 
             # Recogemos los valores que nos envie el User
-            valores = (producto.nombre, producto.cantidad, producto.precio, producto.categoria, producto.id)
+            valores = (producto.nombre, producto.cantidad, producto.precio, producto.categoria)
             print(f"Estos son lso valores que vamos a introducir: {valores}")
             # Ejecutamos la QUERY desde nuestro cursor
             cursor.execute(cls.INSERTAR, valores)
