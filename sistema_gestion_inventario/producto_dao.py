@@ -165,14 +165,14 @@ class ProductoDAO:
             cursor = conexion.cursor()
 
             # Recogemos los valores del objeto que envio como parametro
-            valores = Producto(nombre = producto.nombre, cantidad = producto.cantidad, precio = producto.precio, categoria = producto.categoria, id = producto.id)
+            valores = (producto.nombre, producto.cantidad,producto.precio, producto.categoria, producto.id)
 
             print(f"Estos son los valores que vamos a enviar en la QUERY: {valores}")
             # Ejecutamos la QUERY que tenemois guardada en la CONSTANTE
             cursor.execute(cls.ACTUALIZAR, valores)
 
             # Guardamos los valores que hemos actualizado
-            cursor.commit()
+            conexion.commit()
 
             # Devolvemos los campos que hemos actualizado
             return cursor.rowcount
@@ -211,7 +211,7 @@ class ProductoDAO:
         cursor.execute(cls.ELIMINAR, valores)
 
         # Guardamos los cambios en la DB 
-        cursor.commit()
+        conexion.commit()
 
         # Devolvemos los valores que se han modificado
         return cursor.rowcount
@@ -238,7 +238,9 @@ if __name__ == "__main__":
     # print(f"Este es el registro de actualizar: {registro}")
 
     # Pruebas metodo eliminar
-    
+    producto_eliminar = Producto(id = 4)
+    registro = ProductoDAO.eliminar(producto_eliminar)
+    print(f"Se eliminaron : {registro} productos")
     
 
     productos = ProductoDAO.seleccionar()
