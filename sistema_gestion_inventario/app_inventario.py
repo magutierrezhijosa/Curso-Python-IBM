@@ -81,7 +81,19 @@ class AppInventario:
             # Mostramos los resultados de la consulta
             print(f"Productos insertados: {registro}")
 
+        # Opcion Mostrar todos los productos
+        elif opcion == 2:
 
+            # Llamamos a la funcion seleccionar de ProductoDao
+            registros = self.producto_dao.seleccionar()
+
+            print("Los Producto del inventario son : ")
+
+            # Recorremos los registros para mostrar los valores de cada uno
+            for registro in registros:
+
+                # Mostramos en pantalla cada registro
+                print(registro)
 
         elif opcion == 6:
 
@@ -89,6 +101,10 @@ class AppInventario:
             print("Hasta la proxima .....")
             # Cambiamos la variable salir para no volver a entrar en el bucle 
             return True
+        
+        else: 
+            # Si no introduce una opcion valida
+            print(f"No has introducido una opcion valida : {opcion}")
 
 # Declaramos el programa principal
 if __name__ == "__main__":
