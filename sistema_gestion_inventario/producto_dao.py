@@ -209,6 +209,12 @@ class ProductoDAO:
 
         # Ejecutamos la QUERY que tenemos en la CONSTANTE
         cursor.execute(cls.ELIMINAR, valores)
+
+        # Guardamos los cambios en la DB 
+        cursor.commit()
+
+        # Devolvemos los valores que se han modificado
+        return cursor.rowcount
     
 
 if __name__ == "__main__": 
@@ -226,10 +232,13 @@ if __name__ == "__main__":
 
     # print(f"Este es el producto que buscabas es: {producto_buscado} ")
 
-    # Prueba metodo Actualizar
-    valores = Producto(3, "Patin-electrico", 5, 400, "Tech")
-    registro = ProductoDAO.actualizar(valores)
-    print(f"Este es el registro de actualizar: {registro}")
+    # # Prueba metodo Actualizar
+    # valores = Producto(3, "Patin-electrico", 5, 400, "Tech")
+    # registro = ProductoDAO.actualizar(valores)
+    # print(f"Este es el registro de actualizar: {registro}")
+
+    # Pruebas metodo eliminar
+    
     
 
     productos = ProductoDAO.seleccionar()
