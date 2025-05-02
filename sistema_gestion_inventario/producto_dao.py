@@ -33,7 +33,7 @@ class ProductoDAO:
 
             # Recogemos los valores que nos envie el User
             valores = (producto.nombre, producto.cantidad, producto.precio, producto.categoria)
-            print(f"Estos son lso valores que vamos a introducir: {valores}")
+
             # Ejecutamos la QUERY desde nuestro cursor
             cursor.execute(cls.INSERTAR, valores)
 
@@ -119,18 +119,15 @@ class ProductoDAO:
             #IMPORTANTE poner la coma al final para que sea una tupla
             valores = (producto.nombre,)
 
-            print(f"Los valores para buscar son: {valores}")
+           
             # Ejecutamos  la QUERY
             cursor.execute(cls.BUSCAR, valores)
 
             # Recogemos la respuesta de la QUERY
             registro = cursor.fetchall()
 
-            print(f"Este es la respueste de la QUERY: {registro}")
-
             producto_buscado = Producto(registro[0][0], registro[0][1], registro[0][2], registro[0][3], registro[0][4])
 
-            print(f"Este es el resultado de producto_buscado: {producto_buscado}")
 
             # Devolvemos la respuesta que nos envio la QUERY
             return producto_buscado
@@ -167,7 +164,6 @@ class ProductoDAO:
             # Recogemos los valores del objeto que envio como parametro
             valores = (producto.nombre, producto.cantidad,producto.precio, producto.categoria, producto.id)
 
-            print(f"Estos son los valores que vamos a enviar en la QUERY: {valores}")
             # Ejecutamos la QUERY que tenemois guardada en la CONSTANTE
             cursor.execute(cls.ACTUALIZAR, valores)
 
@@ -254,10 +250,10 @@ if __name__ == "__main__":
     # registro = ProductoDAO.actualizar(valores)
     # print(f"Este es el registro de actualizar: {registro}")
 
-    # Pruebas metodo eliminar
-    producto_eliminar = Producto(id = 4)
-    registro = ProductoDAO.eliminar(producto_eliminar)
-    print(f"Se eliminaron : {registro} productos")
+    # # Pruebas metodo eliminar
+    # producto_eliminar = Producto(id = 4)
+    # registro = ProductoDAO.eliminar(producto_eliminar)
+    # print(f"Se eliminaron : {registro} productos")
     
 
     productos = ProductoDAO.seleccionar()

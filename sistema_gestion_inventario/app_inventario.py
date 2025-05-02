@@ -95,6 +95,44 @@ class AppInventario:
                 # Mostramos en pantalla cada registro
                 print(registro)
 
+        # Opcion Buscar un producto segun el nombre
+        elif opcion == 3:
+
+            # Pedimos al usuario que nos introduzca el nombre del producto que desea buscar
+            nombre_producto = input("Introduce el nombre del producto que deseas buscar : ")
+
+            # Creamos un objeto con el nombre que nos dio el USER
+            producto_buscado = Producto(nombre=nombre_producto)
+
+            # Llamamos a la funcion buscar de productoDAO
+            registro = self.producto_dao.buscar(producto_buscado)
+
+
+            # Mostramos al User el producto que buscaba
+            print(f"El producto que buscabas es : {registro}")
+
+
+        # Opcion Actualizar un producto del inventario
+        elif opcion == 4:
+
+            # Vamos a preguntar al User por los datos del nuevo producto
+            id = input("Introduce la id del producto:  ")
+            nombre = input("Introduce el nombre del producto:  ")
+            cantidad = input("Introduce la cantidad del  producto:  ")
+            precio = input("Introduce el precio del producto:  ")
+            categoria = input("Introduce la categoria del producto:  ")
+
+            # Creamos un objeto de tipo Producto con los valores dados
+            producto_actualizar = Producto(id=id,nombre=nombre,cantidad=cantidad,precio=precio,categoria=categoria)
+
+            # Llamamos a lmetodo actualizar de productoDAO
+            registro = self.producto_dao.actualizar(producto_actualizar)
+
+            # Mostramos en pantalla el resultado
+            print(f"El producto se actualizo correctamente : {registro}")
+
+
+
         elif opcion == 6:
 
             # Nos despedimos del User
@@ -105,6 +143,9 @@ class AppInventario:
         else: 
             # Si no introduce una opcion valida
             print(f"No has introducido una opcion valida : {opcion}")
+
+        input("\nPresiona Enter para continuar ....")
+        return False
 
 # Declaramos el programa principal
 if __name__ == "__main__":
