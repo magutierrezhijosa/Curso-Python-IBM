@@ -10,7 +10,7 @@ class ProductoDAO:
     SELECCIONAR = "SELECT * FROM productos ORDER BY id"
     INSERTAR = "INSERT INTO productos(nombre, cantidad, precio, categoria) VALUES (%s, %s, %s, %s)"
     BUSCAR = "SELECT * FROM productos WHERE nombre=%s"
-    ACTUALIZAR = "UPDATE productos SET nombre=%s, cantidad=%s, precio=%s, categoria=%s"
+    ACTUALIZAR = "UPDATE productos SET nombre=%s, cantidad=%s, precio=%s, categoria=%s WHERE id=%s"
     ELIMINAR = "DELETE FROM productos WHERE id=%s"
 
     # Vamos a crear los metodos de clase para realizar las consultas a la base de datos
@@ -32,7 +32,7 @@ class ProductoDAO:
             cursor = conexion.cursor()
 
             # Recogemos los valores que nos envie el User
-            valores = (producto.nombre, producto.cantidad, producto.precio, producto.categoria)
+            valores = (producto.nombre, producto.cantidad, producto.precio, producto.categoria, producto.id)
             print(f"Estos son lso valores que vamos a introducir: {valores}")
             # Ejecutamos la QUERY desde nuestro cursor
             cursor.execute(cls.INSERTAR, valores)
@@ -164,7 +164,18 @@ class ProductoDAO:
             # Creamos el objeto de tipo cursor
             cursor = conexion.cursor()
 
-            # Recogemos los valores del objeto
+            # Recogemos los valores del objeto que envio como parametro
+            valores = Producto(nombre = producto.nombre, cantidad = producto.cantidad, precio = producto.precio, categoria = producto.categoria, id = producto.id)
+
+            print(f"Estos son los valores que vamos a enviar en la QUERY: {valores}")
+            # Ejecutamos la QUERY que tenemois guardada en la CONSTANTE
+            cursor.execute(cls.ACTUALIZAR, valores)
+
+            # Guardamos los valores que hemos actualizado
+            cursor.commit()
+
+            # Devolvemos los campos que hemos actualizado
+            return cursor.rowcount
 
 
         except Exception as e:
@@ -172,7 +183,32 @@ class ProductoDAO:
             # Mostramos en pantalla el error 
             print(f"Ocurrio un erro al actualizar: {e}")
 
+        finally:
 
+            # Compruebo que la conexion no sea None
+            if conexion is not None:
+
+                # Cerramos el cursor
+                cursor.close()
+                # Cerramos la conexion
+                Conexion.liberar_conexion(conexion)
+
+    
+    @classmethod
+    # Definimos el metodo de clase eliminar para borrar un producto de la tabla
+    def eliminar(cls, producto):
+
+        # Definimos la variable de la conexion 
+        conexion = None
+
+        # Creamos el objeto de tipo curor 
+        cursor = conexion.cursor()
+
+        # Guardamos en una tupla los valores del objeto que se nos envio como parametro
+        valores = (producto.id,)
+
+        # Ejecutamos la QUERY que tenemos en la CONSTANTE
+        cursor.execute(cls.ELIMINAR, valores)
     
 
 if __name__ == "__main__": 
@@ -183,10 +219,17 @@ if __name__ == "__main__":
     # producto_insertar = Producto(nombre="Monitor", cantidad=50, precio=200, categoria="Tech")
     # response = ProductoDAO.insertar(producto_insertar)
     # print(f"Productos insertados : {response}")
-    valores = Producto(nombre="Bicicleta")
-    producto_buscado = ProductoDAO.buscar(valores)
 
-    print(f"Este es el producto que buscabas es: {producto_buscado} ")
+    # # Prueba de lmetodo buscar
+    # valores = Producto(nombre="Bicicleta")
+    # producto_buscado = ProductoDAO.buscar(valores)
+
+    # print(f"Este es el producto que buscabas es: {producto_buscado} ")
+
+    # Prueba metodo Actualizar
+    valores = Producto(3, "Patin-electrico", 5, 400, "Tech")
+    registro = ProductoDAO.actualizar(valores)
+    print(f"Este es el registro de actualizar: {registro}")
     
 
     productos = ProductoDAO.seleccionar()
