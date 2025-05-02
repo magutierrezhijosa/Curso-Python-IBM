@@ -201,20 +201,37 @@ class ProductoDAO:
         # Definimos la variable de la conexion 
         conexion = None
 
-        # Creamos el objeto de tipo curor 
-        cursor = conexion.cursor()
+        try:
+            # Creamos el objeto de tipo Conexion
+            conexion = Conexion.obtener_conexion()
 
-        # Guardamos en una tupla los valores del objeto que se nos envio como parametro
-        valores = (producto.id,)
+            # Creamos el objeto de tipo curor 
+            cursor = conexion.cursor()
 
-        # Ejecutamos la QUERY que tenemos en la CONSTANTE
-        cursor.execute(cls.ELIMINAR, valores)
+            # Guardamos en una tupla los valores del objeto que se nos envio como parametro
+            valores = (producto.id,)
 
-        # Guardamos los cambios en la DB 
-        conexion.commit()
+            # Ejecutamos la QUERY que tenemos en la CONSTANTE
+            cursor.execute(cls.ELIMINAR, valores)
 
-        # Devolvemos los valores que se han modificado
-        return cursor.rowcount
+            # Guardamos los cambios en la DB 
+            conexion.commit()
+
+            # Devolvemos los valores que se han modificado
+            return cursor.rowcount
+        
+        except Exception as e:
+
+            print(f"Ocurrio un error al eliminar: {e}")
+
+        finally:
+
+            # Si la conexion no es None la cerramos 
+            if conexion is not None:
+                # Cerramos el cursor
+                cursor.close()
+                # Cerramos la conexion
+                Conexion.liberar_conexion(conexion)
     
 
 if __name__ == "__main__": 
