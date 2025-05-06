@@ -151,10 +151,10 @@ if __name__ == "__main__":
     # clientes_actualizados = ClienteDAO.actualizar(cliente_actualizar)
     # print(f"Clientes actualizados: {clientes_actualizados}")
 
-    # Eliminar cliente
-    cliente_eliminar = Cliente(id=3)
-    clientes_eliminados = ClienteDAO.eliminar(cliente_eliminar)
-    print(f"Se elimino el usuario: {clientes_eliminados}")
+    # # Eliminar cliente
+    # cliente_eliminar = Cliente(id=3)
+    # clientes_eliminados = ClienteDAO.eliminar(cliente_eliminar)
+    # print(f"Se elimino el usuario: {clientes_eliminados}")
 
     # Seleccionas lo cliente
     clientes = ClienteDAO.seleccionar()

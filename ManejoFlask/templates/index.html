@@ -50,41 +50,19 @@
                     <!-- Ahora vamos a ir rellenando el body de la tabla con cada row -->
                     <tbody>
                         <!-- Primera fila con los valores de el primer cliente -->
+                         <!-- Creamos un bucle for y usamos parametros que le enviamos al index.html  -->
+                        {% for cliente in clientes%}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Daniel</td>
-                            <td>Torres</td>
-                            <td>100</td>
+                            <th scope="row">{{cliente.id}}</th>
+                            <td>{{cliente.nombre}}</td>
+                            <td>{{cliente.apellido}}</td>
+                            <td>{{cliente.membresia}}</td>
                             <td class="text-center">
                                 <button class="rounded-1 bg-warning text-dark" style="border: none"><i class="bi bi-pencil"></i></button>
                                 <button class="rounded-1 bg-danger text-light" style="border: none"><i class="bi bi-trash3"></i></button>
-                            </td>
+                            </td>   
                         </tr>
-
-                        <!-- Segunda fila con los valores de el primer cliente -->
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Ivonne</td>
-                            <td>Lopez</td>
-                            <td>200</td>
-                            <td class="text-center">
-                                <button class="rounded-1 bg-warning text-dark" style="border: none"><i class="bi bi-pencil"></i></button>
-                                <button class="rounded-1 bg-danger text-light" style="border: none"><i class="bi bi-trash3"></i></button>
-                            </td>
-                        </tr>
-
-                        <!-- Tercera fila con los valores de el primer cliente -->
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Sofia</td>
-                            <td>Hernandez</td>
-                            <td>300</td>
-                            <td class="text-center">
-                                <button class="rounded-1 bg-warning text-dark" style="border: none"><i class="bi bi-pencil"></i></button>
-                                <button class="rounded-1 bg-danger text-light" style="border: none"><i class="bi bi-trash3"></i></button>
-                            </td>
-                        </tr>
-
+                        {% endfor %}
 
                     </tbody>
 

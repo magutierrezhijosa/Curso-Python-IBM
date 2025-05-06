@@ -1,5 +1,7 @@
 # Importamos el paquete de flask y la clase de Flask
 from flask import Flask, render_template
+# Importamos la clase ClienteDAO 
+from cliente_dao import ClienteDAO
 
 # Definimos la variable de app y lo asociamos al objeto Flask
 app = Flask(__name__)
@@ -14,7 +16,12 @@ titulo_app = "Zona Fit (GYM)"
 def inicio():
     # Es recomendable usar el metodo de logger para enviar informacion a la consola
     app.logger.debug("Entramos al path de inicio /")
-    return render_template("index.html", titulo=titulo_app)
+
+    # Recuperamos los clientes de la bd por medio de la clase ClienteDAO que tiene los metodos que necesitamos
+    clientes_db = ClienteDAO.seleccionar()
+
+
+    return render_template("index.html", titulo=titulo_app, clientes=clientes_db)
 
 # Ejecutamos el programa principal 
 if __name__ == "__main__":
