@@ -1,8 +1,11 @@
 # Importamos el paquete de flask y la clase de Flask
-from flask import Flask
+from flask import Flask, render_template
 
 # Definimos la variable de app y lo asociamos al objeto Flask
 app = Flask(__name__)
+
+# Vamos a agregar una variable que va a ser el titulo de nuestra aplicaion
+titulo_app = "Zona Fit (GYM)"
 
 # Creamos el decorador
 @app.route("/") # url: http://localhost:5000/
@@ -11,7 +14,7 @@ app = Flask(__name__)
 def inicio():
     # Es recomendable usar el metodo de logger para enviar informacion a la consola
     app.logger.debug("Entramos al path de inicio /")
-    return   "<p>Hola Mundo</p>"
+    return render_template("index.html", titulo=titulo_app)
 
 # Ejecutamos el programa principal 
 if __name__ == "__main__":
