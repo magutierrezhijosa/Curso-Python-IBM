@@ -1,4 +1,4 @@
-# Importamos la clase de Flask
+# Importamos el paquete de flask y la clase de Flask
 from flask import Flask
 
 # Definimos la variable de app y lo asociamos al objeto Flask
@@ -6,6 +6,8 @@ app = Flask(__name__)
 
 # Creamos el decorador
 @app.route("/") # url: http://localhost:5000/
+# Creo otro decorador para que atienda la peticion de index.html y responda con un Hola mundo igual que "/"
+@app.route("/index.html")
 def inicio():
     # Es recomendable usar el metodo de logger para enviar informacion a la consola
     app.logger.debug("Entramos al path de inicio /")
