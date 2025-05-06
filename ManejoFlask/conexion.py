@@ -62,4 +62,4 @@ if __name__ == "__main__":
     print(conexion1)
     # Por ultimo cerramos la conexion 
     Conexion.liberar_conexion(conexion1)
-    print(f"Se ha liberado el objeto conexion1")
+    print(f"Se ha liberado el objeto conexion")
