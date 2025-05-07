@@ -58,11 +58,19 @@
                             <td>{{cliente.apellido}}</td>
                             <td>{{cliente.membresia}}</td>
                             <td class="text-center">
-                                <button class="rounded-1 bg-warning text-dark" style="border: none"><i class="bi bi-pencil"></i></button>
-                                <button class="rounded-1 bg-danger text-light" style="border: none"><i class="bi bi-trash3"></i></button>
+                                <div>
+                                    <a href="/editar/{{cliente.id}}" class="btn btn-warning btn-sm me-3">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    
+                                    <a href="/eliminar/{{cliente.id}}">
+                                        <i class="bi bi-trash3"></i>
+                                    </a>
+
+                                </div>
                             </td>   
                         </tr>
-                        {% endfor %}
+                        {% endfor %}  
 
                     </tbody>
 
