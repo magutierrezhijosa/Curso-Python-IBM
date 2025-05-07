@@ -29,6 +29,25 @@
             <!-- Contenedor de formulario -->
             <div class="border rounded-3 p-2">
                 <!-- Aqui va el formulario -->
+                 <!-- Usamos el metodo POST para que la informacion del usuario se envie como parte del cuerpo de este mensage y no se envie en la URL  -->
+                <form action="/guardar" method="post" autocomplete="off">
+                    <!-- Nombre -->
+                    <div class="form-floating py-2">
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre"/>
+                        <label for="nombre">Nombre</label>
+
+                    </div>
+
+                    <!-- Apellido -->
+                    <div class="form-floating py-2">
+
+                        <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                        <label for="apellido">Apellido</label>
+                    </div>
+
+                </form>
+
+
 
             </div><!-- Fin grid principal -->
 
