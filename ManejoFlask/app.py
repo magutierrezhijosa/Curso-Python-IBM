@@ -2,6 +2,9 @@
 from flask import Flask, render_template
 # Importamos la clase ClienteDAO 
 from cliente_dao import ClienteDAO
+# Importamos la clase Cliente 
+from cliente import Cliente
+from cliente_forma import ClienteForma
 
 # Definimos la variable de app y lo asociamos al objeto Flask
 app = Flask(__name__)
@@ -20,8 +23,15 @@ def inicio():
     # Recuperamos los clientes de la bd por medio de la clase ClienteDAO que tiene los metodos que necesitamos
     clientes_db = ClienteDAO.seleccionar()
 
+    # Creamos un objeto de cliente form vacio
+    # Vamos a usar este objeto para guardar  los valores del formulario
+    cliente = Cliente()
 
-    return render_template("index.html", titulo=titulo_app, clientes=clientes_db)
+    # Ahora creo un objeto de ClienteForm
+    cliente_forma = ClienteForma(obj=cliente)
+
+
+    return render_template("index.html", titulo=titulo_app, clientes=clientes_db, forma=cliente_forma)
 
 
 # Ejecutamos el programa principal 
