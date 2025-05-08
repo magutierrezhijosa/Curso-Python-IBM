@@ -23,6 +23,7 @@ def inicio():
 
     return render_template("index.html", titulo=titulo_app, clientes=clientes_db)
 
+
 # Ejecutamos el programa principal 
 if __name__ == "__main__":
     # Llamamos a nuestr metodo .run() lo que hace que se levante nuestro servidor de Flask
