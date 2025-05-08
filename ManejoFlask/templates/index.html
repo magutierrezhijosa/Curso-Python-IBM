@@ -31,25 +31,33 @@
                 <!-- Aqui va el formulario -->
                  <!-- Usamos el metodo POST para que la informacion del usuario se envie como parte del cuerpo de este mensage y no se envie en la URL  -->
                 <form action="/guardar" method="post" autocomplete="off">
+
+                    <!-- Vamos a vaciar el token  -->
+                     {{forma.csrf_token}}
                     <!-- Nombre -->
                     <div class="form-floating py-2">
-                        <input type="text" class="form-control" id="nombre" placeholder="Nombre"/>
-                        <label for="nombre">Nombre</label>
-
+                        <!-- <input type="text" class="form-control" id="nombre" placeholder="Nombre"/>
+                        <label for="nombre">Nombre</label> -->
+                        {{forma.nombre(class="form-control" , placeholder="Nombre")}}
+                        {{forma.nombre.label}}
                     </div>
 
                     <!-- Apellido -->
                     <div class="form-floating py-2">
 
-                        <input type="text" class="form-control" id="apellido" placeholder="Apellido">
-                        <label for="apellido">Apellido</label>
+                        <!-- <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                        <label for="apellido">Apellido</label> -->
+                        {{forma.apellido(class="form-control", placeholder="Apellido")}}
+                        {{forma.apellido.label}}
                     </div>
 
                     <!-- Membresia -->
                     <div class="form-floating py-2">
 
-                        <input type="number" class="form-control" id="membresia" placeholder="Membresia">
-                        <label for="membresia">Membresia</label>
+                        <!-- <input type="number" class="form-control" id="membresia" placeholder="Membresia">
+                        <label for="membresia">Membresia</label> -->
+                        {{forma.membresia(class="form-control", placeholder="Membresia")}}
+                        {{forma.membresia.label}}
 
                     </div>
 

@@ -9,6 +9,8 @@ from cliente_forma import ClienteForma
 # Definimos la variable de app y lo asociamos al objeto Flask
 app = Flask(__name__)
 
+app.config["SECRET_KEY"] = "llave_secreta_123"
+
 # Vamos a agregar una variable que va a ser el titulo de nuestra aplicaion
 titulo_app = "Zona Fit (GYM)"
 
