@@ -65,12 +65,17 @@
                     <div class="text-center py-2">
 
                         
-                        <button type="submit" class="btn btn-warning btn-sm me-3">
+                        <!-- <button type="submit" class="btn btn-warning btn-sm me-3">
                             Guardar
-                        </button>
+                        </button> -->
+                        {{forma.guardar(class="btn btn-warning btn-sm me-3")}}
 
-                       <input type="reset" class="btn btn-danger btn-sm" value="Limpiar">
+                       <!-- <input type="reset" class="btn btn-danger btn-sm" value="Limpiar"> -->
                        
+                       <a href="/limpiar" class="btn btn-danger btn-sm">
+
+                            Limpiar
+                       </a>
 
                     </div>
                 </form>
