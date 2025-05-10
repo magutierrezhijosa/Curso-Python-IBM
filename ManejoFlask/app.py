@@ -35,6 +35,15 @@ def inicio():
 
     return render_template("index.html", titulo=titulo_app, clientes=clientes_db, forma=cliente_forma)
 
+# Vamos a crear el Endpoint para poder GUARDAR los User
+@app.route("/guardar" , methods=["POST"])
+def guardar():
+
+    # Creamos los objetos de cliente inicialmente objeto vacio
+    cliente = Cliente()
+
+    # Ahora creamos un objeto tipo ClienteForma
+    cliete_forma = ClienteForma(obj=cliente)
 
 # Ejecutamos el programa principal 
 if __name__ == "__main__":
