@@ -59,8 +59,17 @@ def guardar():
 # Vamos a crear un nuevo EndPoint o Decorador el cual va a tener la funcion  para limpiar los valores que haya escritos dentro del formulario
 @app.route("/limpiar")
 def limpiar():
-    pass
+    return redirect(url_for("inicio"))
 
+# Creo un Endpoint nuevo para poder editar los clientes de nuestra DB
+@app.route("/editar/<int:id_cliente>")
+def editar(id_cliente):
+    
+    # Esto regresara el objeto de la DB que tenga ese ID
+    cliente = ClienteDAO.seleccionar_por_id(id_cliente)
+
+    # Creo un Objeto de tipo ClienteForma
+    cliente_forma = ClienteForma(obj=cliente)     
 # Ejecutamos el programa principal 
 if __name__ == "__main__":
     # Llamamos a nuestr metodo .run() lo que hace que se levante nuestro servidor de Flask

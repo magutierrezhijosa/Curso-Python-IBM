@@ -8,9 +8,11 @@ class ClienteDAO:
     # Esta clase va tener la funcionalidad para poder interactuar con objeto
     # de tipo cliente y realizar CRUD con los datos
     SELECCIONAR = "SELECT * FROM cliente ORDER BY id"
+    SELECCIONAR_ID = "SELECT * FROM cliente WHERE id=%s"
     INSERTAR = "INSERT INTO cliente(nombre, apellido, membresia) VALUES(%s, %s, %s)"
     ACTUALIZAR = "UPDATE cliente SET nombre=%s, apellido=%s, membresia=%s WHERE id=%s"
     ELIMINAR = "DELETE FROM cliente WHERE id=%s"
+
 
     @classmethod
     # Trabajamos con metodos de clase
@@ -48,6 +50,39 @@ class ClienteDAO:
                 cursor.close()
                 Conexion.liberar_conexion(conexion)
 
+    @classmethod
+    # Trabajamos con metodos de clase
+    def seleccionar_por_id(cls,id):
+        conexion = None
+
+        try:
+            # Vamos a pedir una conexion a la clase Conexion
+            conexion = Conexion.obtener_conexion()
+            # Declaramos la variable de cursor
+            cursor = conexion.cursor()
+            valores = (id,)
+            # Ejecutamos la QUERY que tenemos almacenada el la CONSTANTE de clase
+            # por medio del cursor que hemos creado anteriormente
+            cursor.execute(cls.SELECCIONAR_ID, valores)
+            # Guardamos todos los registros de la QUERY que hicimos al Cliente
+            registro = cursor.fetchone()
+            # Mapeo de clase-tabla cliente
+            clientes = Cliente(registro[0], registro[1], registro[2], registro[3])
+
+               
+            # Por ultimo devolvemos la list ade Objetos de tipo Cliente
+            return clientes
+
+        except Exception as e:
+            print(f"Ocurrio un error al seleccionar cliente por id: {e}")
+        #
+        finally:
+            # Revisamos el objeto conexion para cerrarlo en el caso de que no sea None
+            if conexion is not None:
+                # Cerramos el cursor
+                cursor.close()
+                Conexion.liberar_conexion(conexion)
+
     # Creamos otro metodo de clase
     @classmethod
     def  insertar(cls, cliente):
@@ -77,6 +112,11 @@ class ClienteDAO:
                 # Cerramos el cursor
                 cursor.close()
                 Conexion.liberar_conexion(conexion)
+    
+
+    
+
+    
 
     @classmethod
     def actualizar(cls,cliente):
