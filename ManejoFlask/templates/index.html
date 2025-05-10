@@ -33,7 +33,12 @@
                 <form action="/guardar" method="post" autocomplete="off">
 
                     <!-- Vamos a vaciar el token  -->
-                     {{forma.csrf_token}}
+                    {{forma.csrf_token}}
+
+                     <!-- VALOR DE ID -->
+                      <!-- <input type="hidden" id="id" value=""> -->
+                    {{forma.id}}
+
                     <!-- Nombre -->
                     <div class="form-floating py-2">
                         <!-- <input type="text" class="form-control" id="nombre" placeholder="Nombre"/>

@@ -49,9 +49,15 @@ def guardar():
     # El cual valida los TIPOS DE VALORE , SI ES REQUERIDO etc
     if cliente_forma.validate_on_submit():
         #Lenamos el objeto Cliente con los valores del formulario
+        # TAMBIE SE AGREGAR EL ID OCULTO
         cliente_forma.populate_obj(cliente)
-        # Guardamos el nuevo Cliente en la bd
-        ClienteDAO.insertar(cliente)
+
+        if not cliente.id:
+            # Insertamos el nuevo Cliente en la bd
+            ClienteDAO.insertar(cliente)
+        else:
+            # Actualizamos los valores del Cliente
+            ClienteDAO.actualizar(cliente)
     
     # Vamos a redireccionar al EndPoint de /inicio para recargar los valores de los clientes de la DB
     return redirect(url_for("inicio"))

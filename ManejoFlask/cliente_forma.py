@@ -1,5 +1,6 @@
 
 from flask_wtf import FlaskForm
+from wtforms import HiddenField
 from wtforms.fields.numeric import IntegerField
 from wtforms.fields.simple import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -8,6 +9,8 @@ from wtforms.validators import DataRequired
 class ClienteForma(FlaskForm):
 
     # Vamos a definir el campo nombre de tipo cadena StringField lo cual va generar un campo para mostrar el input text tipo nombre
+
+    id = HiddenField("id")
     # Por un lado va a generar el componenete de etiqueta y por otro lado va a generar el componente de input text
     nombre =  StringField("Nombre", validators=[DataRequired()])
 
