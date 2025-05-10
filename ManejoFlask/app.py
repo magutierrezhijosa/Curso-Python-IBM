@@ -69,7 +69,15 @@ def editar(id_cliente):
     cliente = ClienteDAO.seleccionar_por_id(id_cliente)
 
     # Creo un Objeto de tipo ClienteForma
-    cliente_forma = ClienteForma(obj=cliente)     
+    cliente_forma = ClienteForma(obj=cliente) 
+
+    # Recuperamos el listado de clientes para volver a mostrarlo
+    clientes_db = ClienteDAO.seleccionar()
+
+    #  Cargamos el index.html con toda la informacion del cliente seleccionado
+    return render_template("index.html", titulo=titulo_app, clientes=clientes_db, forma=cliente_forma)
+
+
 # Ejecutamos el programa principal 
 if __name__ == "__main__":
     # Llamamos a nuestr metodo .run() lo que hace que se levante nuestro servidor de Flask
