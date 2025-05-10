@@ -1,5 +1,5 @@
 # Importamos el paquete de flask y la clase de Flask
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, url_for
 # Importamos la clase ClienteDAO 
 from cliente_dao import ClienteDAO
 # Importamos la clase Cliente 
@@ -43,7 +43,18 @@ def guardar():
     cliente = Cliente()
 
     # Ahora creamos un objeto tipo ClienteForma
-    cliete_forma = ClienteForma(obj=cliente)
+    cliente_forma = ClienteForma(obj=cliente)
+
+    # Vamos a comprobar los datos del formulario cuando se ha pulsado submit
+    # El cual valida los TIPOS DE VALORE , SI ES REQUERIDO etc
+    if cliente_forma.validate_on_submit():
+        #Lenamos el objeto Cliente con los valores del formulario
+        cliente_forma.populate_obj(cliente)
+        # Guardamos el nuevo Cliente en la bd
+        ClienteDAO.insertar(cliente)
+    
+    # Vamos a redireccionar al EndPoint de /inicio para recargar los valores de los clientes de la DB
+    return redirect(url_for("inicio"))
 
 # Ejecutamos el programa principal 
 if __name__ == "__main__":
