@@ -56,6 +56,11 @@ def guardar():
     # Vamos a redireccionar al EndPoint de /inicio para recargar los valores de los clientes de la DB
     return redirect(url_for("inicio"))
 
+# Vamos a crear un nuevo EndPoint o Decorador el cual va a tener la funcion  para limpiar los valores que haya escritos dentro del formulario
+@app.route("/limpiar")
+def limpiar():
+    pass
+
 # Ejecutamos el programa principal 
 if __name__ == "__main__":
     # Llamamos a nuestr metodo .run() lo que hace que se levante nuestro servidor de Flask
