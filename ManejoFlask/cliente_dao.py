@@ -114,10 +114,6 @@ class ClienteDAO:
                 Conexion.liberar_conexion(conexion)
     
 
-    
-
-    
-
     @classmethod
     def actualizar(cls,cliente):
         # Definimos la variable de conexion

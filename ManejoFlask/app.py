@@ -83,6 +83,18 @@ def editar(id_cliente):
     #  Cargamos el index.html con toda la informacion del cliente seleccionado
     return render_template("index.html", titulo=titulo_app, clientes=clientes_db, forma=cliente_forma)
 
+# Creo un ENdpoint nuevo para eliminar un Cliente de la DB
+@app.route("/eliminar/<int:id_cliente>")
+def eliminar(id_cliente):
+
+    # Creo un objeto tipo Cliente con el id que se desea eliminar 
+    cliente_eliminar = Cliente(id=id_cliente)
+
+    # Llamamos a la clase ClienteDao para usar su metodo eliminar 
+    ClienteDAO.eliminar(cliente_eliminar)
+
+    return redirect(url_for("inicio")) 
+
 
 # Ejecutamos el programa principal 
 if __name__ == "__main__":
