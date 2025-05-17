@@ -25,9 +25,9 @@ def about(request):
 # Creamos la vista para mostrar el Portfolio
 def portfolio(request):
 
-    return HttpResponse(html_base + "<h2>Portafolio</h2><p>Este es el Portfolio de Michelangelo</p>")
+    return render(request , "core/portfolio.html")
 
 # Creamos la vista de Contacto
 def contact (request):
 
-    return HttpResponse(html_base + "<h2>Contacto</h2><p>Contacto de Michelangelo</p>")
+    return render(request , "core/contact.html")
