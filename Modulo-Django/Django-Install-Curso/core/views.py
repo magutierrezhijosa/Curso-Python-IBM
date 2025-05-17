@@ -16,11 +16,11 @@ html_base = """
 # Creamos la vista para mostrar home
 def home(request):
     # Devolvemos la respuesta de tipo HttpResponse
-    return HttpResponse(html_base + "<h2>Portada</h2><p>Esto es la portada </p>")
+    return render(request , "core/home.html")
 
 #  Creamos una vista para mostrar el About
 def about(request):
-    return HttpResponse(html_base + "<h2>Acerca de </h2><p>Me llamo MichelAngelo y soy programador</p>")
+    return render(request , "core/about.html")
 
 # Creamos la vista para mostrar el Portfolio
 def portfolio(request):
