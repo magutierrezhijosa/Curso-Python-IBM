@@ -2,6 +2,21 @@
 {% extends 'core/base.html' %}
 
 {% block title%}Portada{% endblock %}
+
+{% block background %}
+
+    {% load static %}
+    {% static 'core/img/home-bg.jpg' %}
+
+{% endblock %}
+
+
+{% block headers %}
+
+    <h1>Miguel Angel Gutierrez</h1>
+    <span class="subheading">Desarrollador Full-Stack</span>
+
+{% endblock %}
     
 {% block content%}
 
