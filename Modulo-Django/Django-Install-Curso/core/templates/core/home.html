@@ -3,12 +3,7 @@
 
 {% block title%}Portada{% endblock %}
 
-{% block background %}
-
-    {% load static %}
-    {% static 'core/img/home-bg.jpg' %}
-
-{% endblock %}
+{% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
 
 
 {% block headers %}
@@ -20,10 +15,6 @@
     
 {% block content%}
 
-    <h2>Portada</h2>
-
-
-    <p>Esto es la portada </p>
 
 {% endblock %}
 

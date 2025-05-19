@@ -3,10 +3,23 @@
 
 {% block title%}Contacto{% endblock %}
 
+{% block background %}{% load static %}{% static 'core/img/contact-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+
+    <h1> Contacto </h1>
+    <span class="subheading">Asesoría</span>
+
+{% endblock %}
+
 {% block content%}
 
-    <h2>Contacto</h2>
+    <div class="text-center">
 
-    <p>Contacto de Michelangelo</p>
+        <h2>Contacto</h2>
 
+        <p>Contacto de Michelangelo</p>
+
+    </div>
+ 
 {% endblock %}
