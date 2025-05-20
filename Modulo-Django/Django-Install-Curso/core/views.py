@@ -11,7 +11,7 @@ html_base = """
 </ul>
 
 """
-
+#### Aqui vamos a definir  las vistas que vamos a usar ####
 # Create your views here.
 # Creamos la vista para mostrar home
 def home(request):
