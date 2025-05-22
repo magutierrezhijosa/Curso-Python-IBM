@@ -22,10 +22,7 @@ def home(request):
 def about(request):
     return render(request , "core/about.html")
 
-# Creamos la vista para mostrar el Portfolio
-def portfolio(request):
 
-    return render(request , "core/portfolio.html")
 
 # Creamos la vista de Contacto
 def contact (request):
