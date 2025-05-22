@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from .models import Proyect
 
 # Create your views here.
 # Creamos la vista para mostrar el Portfolio
 def portfolio(request):
 
-    return render(request , "portfolio/portfolio.html")
+    proyects = Proyect.objects.all()
+    return render(request , "portfolio/portfolio.html", {'proyects':proyects})
